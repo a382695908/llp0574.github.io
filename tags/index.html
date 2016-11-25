@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        标签: AngularJS | llp的程序猿之路
+        标签云 | llp的程序猿之路
     </title>
     
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: AngularJS | llp的程序猿之路">
+    <meta property="og:title" content="标签云 | llp的程序猿之路">
     <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
     
      <!--[if lte IE 9]>
@@ -192,461 +192,81 @@
                 </button>
 				
 				
-                <!-- Index Module -->
-<div class="material-index mdl-grid">
-	
-		<!-- Paradox Header -->
-		<!-- Daily pic -->
-<div class="mdl-card daily-pic mdl-cell mdl-cell--8-col index-top-block">
-    
-    <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/iron.jpg)">
-        <p class="index-top-block-slogan"><a href="#">拥抱变化</a></p>
-    </div>
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
 
-    <!-- Avatar & Name -->
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        <!-- Author Avatar -->
-        <div id="author-avatar">
-            <img src="/img/avatar.png" width="32px" height="32px" alt="avatar">
-        </div>
-        <div>
-            <strong>llp</strong>
-        </div>
-    </div>
-</div>
-
-		<!-- Blog info -->
-<div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
-	
-    <!-- Search -->
-	
-	<!-- Google -->
-	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" method="post" action="">
-		<label id="search-label" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent mdl-shadow--4dp" for="search">
-			<i class="material-icons mdl-color-text--white" role="presentation">search</i>
-		</label>
-
-		<form id="search-form" method="get" action="//google.com/search" accept-charset="UTF-8" class="mdl-textfield__expandable-holder" target="_blank">
-			<input class="mdl-textfield__input search-input" type="search" name="q" id="search" placeholder="">
-			<label id="search-form-label" class="mdl-textfield__label" for="search"></label>
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
 			
-			<input type="hidden" name="sitesearch" value="http://yoursite.com">
-		</form>
+			
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Tags Cloud -->
+	<style>
+	#bottom{
+		position: relative;
+	}
+	
+	@media screen and (max-width: 480px){
+		.material-tagscloud{
+			margin: 6em 2em 0;
+		}
+	}
+	
+	.material-tagscloud a{
+		padding: 10px;
+		line-height: 40px;
+		white-space: nowrap;
+		transition: .6s;
+	}
+	.material-tagscloud a:hover{
+		transition: .6s;
+		color: #FAFAFA !important;
+    	background: #9E9E9E;
+	}
+</style>
+
+<div class=" material-tagscloud">
+	<div class="material-post mdl-grid">
+		<a href="/tags/AngularJS/" style="font-size: 35px; color: #212121">AngularJS</a> <a href="/tags/Git/" style="font-size: 16px; color: #757575">Git</a> <a href="/tags/Node/" style="font-size: 16px; color: #757575">Node</a> <a href="/tags/React/" style="font-size: 16px; color: #757575">React</a> <a href="/tags/TypeScript/" style="font-size: 25.5px; color: #4b4b4b">TypeScript</a> <a href="/tags/Vue-js/" style="font-size: 16px; color: #757575">Vue.js</a> <a href="/tags/Vuex/" style="font-size: 16px; color: #757575">Vuex</a> <a href="/tags/css/" style="font-size: 16px; color: #757575">css</a> <a href="/tags/iOS/" style="font-size: 25.5px; color: #4b4b4b">iOS</a> <a href="/tags/nvm/" style="font-size: 16px; color: #757575">nvm</a> <a href="/tags/设计/" style="font-size: 16px; color: #757575">设计</a>
 	</div>
-
-
-
-
-
-
-    <!-- LOGO -->
-    <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
-        <a href="null">
-            <img src="/img/logo.png" alt="logo" />
-        </a>
-    </div>
-
-    <!-- Infomation -->
-    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-        <!-- Blog Title -->
-        <div>
-            <strong>llp的程序猿之路</strong>
-        </div>
-        <div class="section-spacer"></div>
-        
-        <!-- Pages -->
-        <button id="show-pages-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">view_carousel</i>
-            <span class="visuallyhidden">Pages</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
-            
-                <a class="index_share-link" href="/about" title="关于我">
-                    <l class="mdl-menu__item mdl-js-ripple-effect"i>
-                        关于我
-                    </li>
-                </a>
-            
-                <a class="index_share-link" href="/tags" title="标签云">
-                    <l class="mdl-menu__item mdl-js-ripple-effect"i>
-                        标签云
-                    </li>
-                </a>
-            
-        </ul>
-        
-        <!-- Menu -->
-        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">more_vert</i>
-            <span class="visuallyhidden">show menu</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
-            
-            <a class="index_share-link" href="null">
-                <li class="mdl-menu__item mdl-js-ripple-effect">
-                    文章 RSS
-                </li>
-            </a>
-            <a class="index_share-link" href="https://twitter.com/intent/tweet?text=llp的程序猿之路&url=http://yoursite.com/&via=llp" target="_blank">
-                <li class="mdl-menu__item mdl-js-ripple-effect">
-                    分享到 Twitter
-                </li>
-            </a>
-            <a class="index_share-link" href="https://plus.google.com/share?url=http://yoursite.com/" target="_blank">
-                <li class="mdl-menu__item mdl-js-ripple-effect">
-                    分享到 Google+
-                </li>
-            </a>
-            <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=llp的程序猿之路&url=http://yoursite.com/&pic=&searchPic=false&style=simple" target="_blank">
-                <li class="mdl-menu__item mdl-js-ripple-effect">
-                    分享到微博
-                </li>
-            </a>
-        </ul>
-    </div>
 </div>
 
+
+<script>
+	var adjustFooter = function(){
+		if( ($("#bottom").offset().top + $("#bottom").outerHeight() ) < $(window).height() ){
+			var footerBottom = $(window).height() - $("#bottom").outerHeight() - $("#bottom").offset().top;
+//			console.log(footerBottom);
+			$("#bottom").css("bottom", "-" + footerBottom + "px");
+		}
+	};
 	
-
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjstypescript.png)">
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/27/use-typescript-to-write-angular-controller/">如何使用 TypeScript 编写 AngularJS 的 Controller？</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-          
-原文链接 : 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/27/use-typescript-to-write-angular-controller/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 27, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjstypescript.png)">
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/26/use-typescript-to-write-angular-directive/">如何使用 TypeScript 编写自定义 AngularJS 指令？</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-          
-原文链接 : 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/26/use-typescript-to-write-angular-directive/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 26, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjs.jpg)">
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/22/angular-controller-data-share/">Controller间的数据共享？最佳实践：使用Service</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-          
-原文链接 : 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/22/angular-controller-data-share/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 22, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angulartoreact.png)">
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/21/angular-to-react/">逐渐去掌握 React（作为一名 Angular 开发者）</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-          
-原文链接 : 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/21/angular-to-react/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 21, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjs.jpg)">
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/01/16/angular-js-problem-collections/">使用AngularJS构建应用时遇到的问题及解决方案（版本为1.3.9）</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-          最近在公司使用AngularJS（1.3.9）完成了一个项目，在此记录一下过程中遇到的问题及解决方案。
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/01/16/angular-js-problem-collections/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>1月 16, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/前端/">前端</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-
-	
-		<script>
-    
-    var randomNum;
-    
-    var locatePost = $(".something-else").next();
-    for(var i=0; i < 5; i++){
-        
-        randomNum = Math.floor(Math.random() * 5 + 1);
-        
-        locatePost.children(".post_thumbnail-random").attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/' + randomNum + '.png' + ')')
-        
-        locatePost = locatePost.next();
-    }
-    
+	$(document).ready(function(){
+		adjustFooter();
+	});
 </script>
 
-	
-
-</div>
 
 				
 				
