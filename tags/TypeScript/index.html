@@ -157,6 +157,9 @@
 
 	<script src="/js/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
 	<!-- UC Browser Compatible-->
 	<script>
 		var agent = navigator.userAgent.toLowerCase();
@@ -254,7 +257,7 @@
 
     <!-- LOGO -->
     <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
-        <a href="null">
+        <a href="#">
             <img src="/img/logo.png" alt="logo" />
         </a>
     </div>
@@ -295,7 +298,7 @@
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
             
-            <a class="index_share-link" href="null">
+            <a class="index_share-link" href="#">
                 <li class="mdl-menu__item mdl-js-ripple-effect">
                     文章 RSS
                 </li>
@@ -713,6 +716,7 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
                 
 				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -856,11 +860,14 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Window Load-->
 <script>
-    // Post_Toc parent position fixed
     $(window).load(function() {
+        // Post_Toc parent position fixed
         $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
 </script>
+
+<!-- MathJax Load-->
+
             </main>
         </div>
 		

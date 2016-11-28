@@ -157,6 +157,9 @@
 
 	<script src="/js/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
 	<!-- UC Browser Compatible-->
 	<script>
 		var agent = navigator.userAgent.toLowerCase();
@@ -270,7 +273,7 @@
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;2,438&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;2,445&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
     <span class="post-read">预计阅读&nbsp;9&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
@@ -350,39 +353,16 @@
 <p>一个关键的差别在于 React 里 <strong>所有东西都是组件</strong> ，从根节点到下面所有。Angular 让你使用 <code>ng-controller</code> 去混合和匹配所有指令，并在之后特定地路由出各自的指令和模板… React 让这个事情变简单了一点。所有东西都是组件，页面，按钮甚至是路由，我们随后会讲到这些。</p>
 <p>好了，所以说 React 的“组件”是类似于“指令”的。那么它的代码看起来是怎样的呢？</p>
 <p>下面是一个展示歌曲名字的 Angular 指令：</p>
-<pre><code>angular.module(&apos;demo&apos;, []).directive(&apos;songName&apos;, function() {
-  return {
-    scope: {
-      song: &apos;=&apos;
-    },
-    restrict: &apos;E&apos;,
-    template: &apos;&lt;span class=&quot;song-name&quot;&gt;{{ ctrl.song.name }}&lt;/span&gt;&apos;,
-    controller: function() {},
-    controllerAs: &apos;ctrl&apos;,
-    bindToController: true
-  };
-});
-</code></pre><p>接下来是用 React 写的相同功能的组件：</p>
-<pre><code>var SongName = React.createClass({
-  propTypes: {
-    song: React.PropTypes.object.isRequired
-  },
-  render: function() {
-    return &lt;span className=&apos;song-name&apos;&gt;{this.props.song.name}&lt;/span&gt;;
-  }
-});
-</code></pre><p>你马上就可以发现一些相似之处：它们都期望得到一个 <code>song</code> 对象，并都似乎有各种各样的模板。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">angular.module(&apos;demo&apos;, []).directive(&apos;songName&apos;, function() &#123;</div><div class="line">  return &#123;</div><div class="line">    scope: &#123;</div><div class="line">      song: &apos;=&apos;</div><div class="line">    &#125;,</div><div class="line">    restrict: &apos;E&apos;,</div><div class="line">    template: &apos;&lt;span class=&quot;song-name&quot;&gt;&#123;&#123; ctrl.song.name &#125;&#125;&lt;/span&gt;&apos;,</div><div class="line">    controller: function() &#123;&#125;,</div><div class="line">    controllerAs: &apos;ctrl&apos;,</div><div class="line">    bindToController: true</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>接下来是用 React 写的相同功能的组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var SongName = React.createClass(&#123;</div><div class="line">  propTypes: &#123;</div><div class="line">    song: React.PropTypes.object.isRequired</div><div class="line">  &#125;,</div><div class="line">  render: function() &#123;</div><div class="line">    return &lt;span className=&apos;song-name&apos;&gt;&#123;this.props.song.name&#125;&lt;/span&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>你马上就可以发现一些相似之处：它们都期望得到一个 <code>song</code> 对象，并都似乎有各种各样的模板。</p>
 <p>一些不同之处在于：React 相对 Angular 有着更少的代码。我敢说…更简洁了不是吗？React 里，期望的参数(<code>song</code>)有着某种类型验证，并且 HTML 没有引号！</p>
 <p>事实上那个看上去没加引号的 HTML 并不是真正的 HTML。（等下就会讲到）</p>
 <p><code>React.createClass</code> 和 <code>angular.directive</code> 类似 - 它创建了一个组件类。这个组件 <strong>必须</strong> 有一个 <code>render</code> 方法，<code>propTypes</code> 是一个可选对象，但最好把它写上。</p>
 <p>还是要对得起 Angular ，它的1.5版本其实介绍了一个 <code>component</code> 方法来缩短指令的长度，所以上面的指令可以简写成下面这样：</p>
-<pre><code>angular.module(&apos;demo&apos;, []).component(&apos;songName&apos;, {
-  bindings: {
-    song: &apos;=&apos;
-  },
-  template: &apos;&lt;span class=&quot;song-name&quot;&gt;{{ $ctrl.song.name }}&lt;/span&gt;&apos;
-});
-</code></pre><p>更简单的写法。它甚至默认没有控制器！我推荐阅读一下<a href="https://toddmotto.com/exploring-the-angular-1-5-component-method/" target="_blank" rel="external">Todd Motto的关于组件方法的文章</a>并在你的代码里尝试一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">angular.module(&apos;demo&apos;, []).component(&apos;songName&apos;, &#123;</div><div class="line">  bindings: &#123;</div><div class="line">    song: &apos;=&apos;</div><div class="line">  &#125;,</div><div class="line">  template: &apos;&lt;span class=&quot;song-name&quot;&gt;&#123;&#123; $ctrl.song.name &#125;&#125;&lt;/span&gt;&apos;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>更简单的写法。它甚至默认没有控制器！我推荐阅读一下<a href="https://toddmotto.com/exploring-the-angular-1-5-component-method/" target="_blank" rel="external">Todd Motto的关于组件方法的文章</a>并在你的代码里尝试一下。</p>
 <p>但它还是没有 <code>propTypes</code> …</p>
 <h3 id="propTypes"><a href="#propTypes" class="headerlink" title="propTypes"></a>propTypes</h3><p><img src="https://daveceddia.com/images/forgot_props@2x.png" alt=""></p>
 <p><code>propTypes</code>是一个验证组件所需参数的方法。你可以把个别参数标记为“必需的”或“可选的”（默认它们都是可选的），把它想象成类型检测吧。</p>
@@ -391,12 +371,10 @@
 <h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>什么是 “prop” ?它实际上是 “property” 的简写（感谢 React 的开发者，让我们再也不用打出 <code>this.properties</code> 或者 <code>this.propertyTypes</code> 了）。</p>
 <p>你可以把 <code>props</code> 看作是传给组件的属性。就像在指令里，你会在 HTML 元素里传递属性一样 - <code>props</code> 会在 JSX 元素里被当作属性传递。</p>
 <h3 id="使用组件"><a href="#使用组件" class="headerlink" title="使用组件"></a>使用组件</h3><p>下面是 Angular 里指令的使用方法：</p>
-<pre><code>// Notice how you have to mentally translate &apos;songName&apos; to &apos;song-name&apos;?
-&lt;song-name song=&quot;ctrl.song&quot;&gt;&lt;/song-name&gt;
-</code></pre><p>然后下面是 React 里组件的使用方法：</p>
-<pre><code>// Notice how you DON&apos;T need to mentally translate SongName to anything?
-&lt;SongName song={theSong}/&gt;
-</code></pre><p>所有没有子元素的标签在 JSX 里都可以自终止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Notice how you have to mentally translate &apos;songName&apos; to &apos;song-name&apos;?</div><div class="line">&lt;song-name song=&quot;ctrl.song&quot;&gt;&lt;/song-name&gt;</div></pre></td></tr></table></figure>
+<p>然后下面是 React 里组件的使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Notice how you DON&apos;T need to mentally translate SongName to anything?</div><div class="line">&lt;SongName song=&#123;theSong&#125;/&gt;</div></pre></td></tr></table></figure>
+<p>所有没有子元素的标签在 JSX 里都可以自终止。</p>
 <p>但让我们先花几分钟来讲讲 JSX吧…</p>
 <h3 id="JS里的HTML？！"><a href="#JS里的HTML？！" class="headerlink" title="JS里的HTML？！"></a>JS里的HTML？！</h3><p>在我对 React 了解不多的时候，我知道它是把 HTML 和 JS 混合起来的，然后我就想这样做真的很 <em>丑陋</em> 啊。我意思是，这对于最佳实践的思考来说已经很多年不会这么写了不是吗？从那段使用 jQuery 的黑暗日子开始，我们就已经知道在 JS 里写 HTML 元素是一件很取巧而且开发体验相当糟糕的事情，所以为什么 React 会再次犯同样的错误呢？</p>
 <p>所以，这里有两件事情需要搞清楚：</p>
@@ -405,28 +383,10 @@
 <li><strong>那并不是HTML</strong>。<br>那是 <em>JSX</em> 。我知道它长得很像 HTML ，马上你可能会想：“JSX嘛 …只是对 HTML 做了一些细微的改变然后换了个名字而已”，好吧，你也可以那么说。我倒觉得它是给我们提供了一种用函数调用去创建 DOM 元素的语法糖。</li>
 </ol>
 <h3 id="JSX-编译成-Javascript"><a href="#JSX-编译成-Javascript" class="headerlink" title="JSX 编译成 Javascript"></a>JSX 编译成 Javascript</h3><p>创建 DOM 元素的函数调用？是的，看看下面的代码：</p>
-<pre><code>// This JSX...
-&lt;span className=&apos;song-name&apos;&gt;{this.props.song.name}&lt;/span&gt;
-
-// Compiles to this function call:
-React.createElement(&apos;span&apos;, {className: &apos;song-name&apos;}, this.props.song.name);
-// React.createElement(&apos;tagName&apos;, props, children);
-</code></pre><p>看起来还挺有道理的，不是吗？ HTML 创建嵌套的 DOM 节点，那我们就用嵌套的函数调用替代了嵌套的 DOM 节点…</p>
-<pre><code>// This is valid JSX:
-&lt;div&gt;
-  &lt;span className=&apos;greeting&apos;&gt;
-    &lt;strong&gt;Hello&lt;/strong&gt;
-    &lt;strong&gt;World&lt;/strong&gt;
-  &lt;/span&gt;
-&lt;/div&gt;
-
-// ...which compiles to this call:
-React.createElement(&apos;div&apos;, null,
-  React.createElement(&apos;span&apos;, {className: &apos;greeting&apos;},
-      React.createElement(&apos;strong&apos;, null, &apos;Hello&apos;),
-      React.createElement(&apos;strong&apos;, null, &apos;World&apos;)
-    ));
-</code></pre><p>实现上来说，这些 <code>React.createElement</code> 方法并没有创建真正的 DOM 节点，它们创建了虚拟的 DOM 节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// This JSX...</div><div class="line">&lt;span className=&apos;song-name&apos;&gt;&#123;this.props.song.name&#125;&lt;/span&gt;</div><div class="line"></div><div class="line">// Compiles to this function call:</div><div class="line">React.createElement(&apos;span&apos;, &#123;className: &apos;song-name&apos;&#125;, this.props.song.name);</div><div class="line">// React.createElement(&apos;tagName&apos;, props, children);</div></pre></td></tr></table></figure>
+<p>看起来还挺有道理的，不是吗？ HTML 创建嵌套的 DOM 节点，那我们就用嵌套的函数调用替代了嵌套的 DOM 节点…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// This is valid JSX:</div><div class="line">&lt;div&gt;</div><div class="line">  &lt;span className=&apos;greeting&apos;&gt;</div><div class="line">    &lt;strong&gt;Hello&lt;/strong&gt;</div><div class="line">    &lt;strong&gt;World&lt;/strong&gt;</div><div class="line">  &lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">// ...which compiles to this call:</div><div class="line">React.createElement(&apos;div&apos;, null,</div><div class="line">  React.createElement(&apos;span&apos;, &#123;className: &apos;greeting&apos;&#125;,</div><div class="line">      React.createElement(&apos;strong&apos;, null, &apos;Hello&apos;),</div><div class="line">      React.createElement(&apos;strong&apos;, null, &apos;World&apos;)</div><div class="line">    ));</div></pre></td></tr></table></figure>
+<p>实现上来说，这些 <code>React.createElement</code> 方法并没有创建真正的 DOM 节点，它们创建了虚拟的 DOM 节点。</p>
 <h3 id="但…关注点的分离！"><a href="#但…关注点的分离！" class="headerlink" title="但…关注点的分离！"></a>但…关注点的分离！</h3><p>所以说我们并不是把 HTML 字符串写到 Javascript 里的！</p>
 <p>但代码逻辑始终还是和表现层混合起来的！那可不能算对！这么多年的软件开发实践告诉我们这样做是很不好的。放心，现在只是还没做完呢，你并没有把视图和逻辑混合起来。</p>
 <p>我认为这是一种类似“<a href="https://en.wikipedia.org/wiki/Cargo_cult_programming" target="_blank" rel="external">货物崇拜</a>”的东西，我们经常在没真正搞清楚为什么的情况下去赞同和执行。有很多很好的理由去说明为什么需要把逻辑和视图层给分离开，但当你回头再看会发现同样也有很多很好的理由去合并它们。</p>
@@ -751,6 +711,7 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
                 
 				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -894,11 +855,14 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Window Load-->
 <script>
-    // Post_Toc parent position fixed
     $(window).load(function() {
+        // Post_Toc parent position fixed
         $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
 </script>
+
+<!-- MathJax Load-->
+
             </main>
         </div>
 		

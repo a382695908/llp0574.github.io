@@ -157,6 +157,9 @@
 
 	<script src="/js/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
 	<!-- UC Browser Compatible-->
 	<script>
 		var agent = navigator.userAgent.toLowerCase();
@@ -270,7 +273,7 @@
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;2,429&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;2,439&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
     <span class="post-read">预计阅读&nbsp;9&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
@@ -360,86 +363,17 @@
 <h2 id="用一个对象共享状态"><a href="#用一个对象共享状态" class="headerlink" title="用一个对象共享状态"></a>用一个对象共享状态</h2><p>开始前，让我们先来看看数据是如何在示例的应用程序当中流转的。</p>
 <p><img src="https://benjaminlistwon.com/postimg/data-flow-in-vue-and-vuex/shared-state-01.svg" alt=""></p>
 <p>在这个演示里，我们将使用一个简单的 JavaScript 对象：<code>var store = {...}</code>，在<code>Client.vue</code>组件的实例之间共享状态。下面是关键文件的重要代码部分：</p>
-<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-&lt;script&gt;
-  var store = {
-    state: {
-      messages: []
-    },
-    newMessage (msg) {
-      this.state.messages.push(msg)
-    }
-  }
-&lt;/script&gt;
-</code></pre><p>这里有两个关键的地方：</p>
+<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  var store = &#123;</div><div class="line">    state: &#123;</div><div class="line">      messages: []</div><div class="line">    &#125;,</div><div class="line">    newMessage (msg) &#123;</div><div class="line">      this.state.messages.push(msg)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这里有两个关键的地方：</p>
 <ol>
 <li>我们通过把这个对象直接添加到<code>index.html</code>里来让其对整个应用程序可用，也可以将它注入到应用程序里更下一层的作用链，但目前直接添加显然更快捷简单。</li>
 <li>我们在这里保存状态，但同时也提供了一个函数来调用它。相比起分散在组件各处的函数，我们更倾向于让它们保持在一个地方（便于维护），并在任何需要它们的地方简单使用。</li>
 </ol>
-<h5 id="App-vue"><a href="#App-vue" class="headerlink" title="App.vue"></a>App.vue</h5><pre><code>&lt;template&gt;
-  &lt;div id=&quot;app&quot;&gt;
-    &lt;div class=&quot;row&quot;&gt;
-      &lt;div class=&quot;col&quot;&gt;
-        &lt;client clientid=&quot;Client A&quot;&gt;&lt;/client&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col&quot;&gt;
-        &lt;client clientid=&quot;Client B&quot;&gt;&lt;/client&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-import Client from &apos;./components/Client.vue&apos;
-
-export default {
-  components: {
-    Client
-  }
-}
-&lt;/script&gt;
-</code></pre><p>这里我们引入了 Client 组件，并创建了两个它的实例，使用一个属性：<code>clientid</code>，来对每个实例进行区分。事实上，你应该更动态地去实现这些，但别忘了，目前快捷简单更重要。</p>
+<h5 id="App-vue"><a href="#App-vue" class="headerlink" title="App.vue"></a>App.vue</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div id=&quot;app&quot;&gt;</div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">      &lt;div class=&quot;col&quot;&gt;</div><div class="line">        &lt;client clientid=&quot;Client A&quot;&gt;&lt;/client&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div class=&quot;col&quot;&gt;</div><div class="line">        &lt;client clientid=&quot;Client B&quot;&gt;&lt;/client&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">import Client from &apos;./components/Client.vue&apos;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  components: &#123;</div><div class="line">    Client</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这里我们引入了 Client 组件，并创建了两个它的实例，使用一个属性：<code>clientid</code>，来对每个实例进行区分。事实上，你应该更动态地去实现这些，但别忘了，目前快捷简单更重要。</p>
 <p>注意一点，到这里我们还完全没有同步任何状态。</p>
-<h5 id="Client-vue"><a href="#Client-vue" class="headerlink" title="Client.vue"></a>Client.vue</h5><pre><code>&lt;template&gt;
-  &lt;div&gt;
-    &lt;h1&gt;{{ clientid }}&lt;/h1&gt;
-    &lt;div class=&quot;client&quot;&gt;
-      &lt;ul&gt;
-        &lt;li v-for=&quot;message in messages&quot;&gt;
-          &lt;label&gt;{{ message.sender }}:&lt;/label&gt; {{ message.text }}
-        &lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;div class=&quot;msgbox&quot;&gt;
-        &lt;input v-model=&quot;msg&quot; placeholder=&quot;Enter a message, then hit [enter]&quot; @keyup.enter=&quot;trySendMessage&quot;&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  data() {
-    return {
-      msg: &apos;&apos;,
-      messages: store.state.messages
-    }
-  },
-  props: [&apos;clientid&apos;],
-  methods: {
-    trySendMessage() {
-      store.newMessage({
-        text: this.msg,
-        sender: this.clientid
-      })
-      this.resetMessage()
-    },
-    resetMessage() {
-      this.msg = &apos;&apos;
-    }
-  }
-}
-&lt;/script&gt;
-</code></pre><p>下面是应用程序的主要内容：</p>
+<h5 id="Client-vue"><a href="#Client-vue" class="headerlink" title="Client.vue"></a>Client.vue</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;h1&gt;&#123;&#123; clientid &#125;&#125;&lt;/h1&gt;</div><div class="line">    &lt;div class=&quot;client&quot;&gt;</div><div class="line">      &lt;ul&gt;</div><div class="line">        &lt;li v-for=&quot;message in messages&quot;&gt;</div><div class="line">          &lt;label&gt;&#123;&#123; message.sender &#125;&#125;:&lt;/label&gt; &#123;&#123; message.text &#125;&#125;</div><div class="line">        &lt;/li&gt;</div><div class="line">      &lt;/ul&gt;</div><div class="line">      &lt;div class=&quot;msgbox&quot;&gt;</div><div class="line">        &lt;input v-model=&quot;msg&quot; placeholder=&quot;Enter a message, then hit [enter]&quot; @keyup.enter=&quot;trySendMessage&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">export default &#123;</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      msg: &apos;&apos;,</div><div class="line">      messages: store.state.messages</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  props: [&apos;clientid&apos;],</div><div class="line">  methods: &#123;</div><div class="line">    trySendMessage() &#123;</div><div class="line">      store.newMessage(&#123;</div><div class="line">        text: this.msg,</div><div class="line">        sender: this.clientid</div><div class="line">      &#125;)</div><div class="line">      this.resetMessage()</div><div class="line">    &#125;,</div><div class="line">    resetMessage() &#123;</div><div class="line">      this.msg = &apos;&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>下面是应用程序的主要内容：</p>
 <ol>
 <li>在该模板里，设置一个<code>v-for</code>循环去遍历<code>messages</code>集合。</li>
 <li>绑定在文本输入框上的<code>v-model</code>简单地存储了组件的本地数据对象<code>msg</code>。</li>
@@ -462,76 +396,14 @@ export default {
 <li>当状态更新时，任何拥有 getter，动态属性和映射到 store 的组件都会被立即更新。</li>
 </ol>
 <p>同样再来看看代码：</p>
-<h5 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h5><pre><code>import store from &apos;./vuex/store&apos;
-
-new Vue({ // eslint-disable-line no-new
-  el: &apos;#app&apos;,
-  render: (h) =&gt; h(App),
-  store: store
-})
-</code></pre><p>这次，我们用 Vuex 创建了一个存储并将其直接传入应用程序当中，替代掉了之前<code>index.html</code>中的 <code>store</code> 对象。在继续之前，先来看一下这个存储：</p>
-<h5 id="store-js"><a href="#store-js" class="headerlink" title="store.js"></a>store.js</h5><pre><code>export default new Vuex.Store({
-
-  state: {
-    messages: []
-  },
-
-  actions: {
-    newMessage ({commit}, msg) {
-      commit(&apos;NEW_MESSAGE&apos;, msg)
-    }
-  },
-
-  mutations: {
-    NEW_MESSAGE (state, msg) {
-      state.messages.push(msg)
-    }
-  },
-
-  strict: debug
-
-})
-</code></pre><p>和我们自己创建的对象非常相似，但是多了一个<code>mutations</code>对象。</p>
-<h5 id="Client-vue-1"><a href="#Client-vue-1" class="headerlink" title="Client.vue"></a>Client.vue</h5><pre><code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;col&quot;&gt;
-    &lt;client clientid=&quot;Client A&quot;&gt;&lt;/client&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;col&quot;&gt;
-    &lt;client clientid=&quot;Client B&quot;&gt;&lt;/client&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>和上次一样的配方。（惊人的相似，对吧？）</p>
-<h5 id="Client-vue-2"><a href="#Client-vue-2" class="headerlink" title="Client.vue"></a>Client.vue</h5><pre><code>&lt;script&gt;
-import { mapState, mapActions } from &apos;vuex&apos;
-
-export default {
-  data() {
-    return {
-      msg: &apos;&apos;
-    }
-  },
-  props: [&apos;clientid&apos;],
-  computed: {
-    ...mapState({
-      messages: state =&gt; state.messages
-    })
-  },
-  methods: {
-    trySendMessage() {
-      this.newMessage({
-        text: this.msg,
-        sender: this.clientid
-      })
-      this.resetMessage()
-    },
-    resetMessage() {
-      this.msg = &apos;&apos;
-    },
-    ...mapActions([&apos;newMessage&apos;])
-  }
-}
-&lt;/script&gt;
-</code></pre><p>模板仍然刚好一样，所以我甚至不需要费心怎么去引入它。最大的不同在于：</p>
+<h5 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import store from &apos;./vuex/store&apos;</div><div class="line"></div><div class="line">new Vue(&#123; // eslint-disable-line no-new</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  render: (h) =&gt; h(App),</div><div class="line">  store: store</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这次，我们用 Vuex 创建了一个存储并将其直接传入应用程序当中，替代掉了之前<code>index.html</code>中的 <code>store</code> 对象。在继续之前，先来看一下这个存储：</p>
+<h5 id="store-js"><a href="#store-js" class="headerlink" title="store.js"></a>store.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">export default new Vuex.Store(&#123;</div><div class="line"></div><div class="line">  state: &#123;</div><div class="line">    messages: []</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  actions: &#123;</div><div class="line">    newMessage (&#123;commit&#125;, msg) &#123;</div><div class="line">      commit(&apos;NEW_MESSAGE&apos;, msg)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  mutations: &#123;</div><div class="line">    NEW_MESSAGE (state, msg) &#123;</div><div class="line">      state.messages.push(msg)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  strict: debug</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>和我们自己创建的对象非常相似，但是多了一个<code>mutations</code>对象。</p>
+<h5 id="Client-vue-1"><a href="#Client-vue-1" class="headerlink" title="Client.vue"></a>Client.vue</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col&quot;&gt;</div><div class="line">    &lt;client clientid=&quot;Client A&quot;&gt;&lt;/client&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col&quot;&gt;</div><div class="line">    &lt;client clientid=&quot;Client B&quot;&gt;&lt;/client&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>和上次一样的配方。（惊人的相似，对吧？）</p>
+<h5 id="Client-vue-2"><a href="#Client-vue-2" class="headerlink" title="Client.vue"></a>Client.vue</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">import &#123; mapState, mapActions &#125; from &apos;vuex&apos;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      msg: &apos;&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  props: [&apos;clientid&apos;],</div><div class="line">  computed: &#123;</div><div class="line">    ...mapState(&#123;</div><div class="line">      messages: state =&gt; state.messages</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    trySendMessage() &#123;</div><div class="line">      this.newMessage(&#123;</div><div class="line">        text: this.msg,</div><div class="line">        sender: this.clientid</div><div class="line">      &#125;)</div><div class="line">      this.resetMessage()</div><div class="line">    &#125;,</div><div class="line">    resetMessage() &#123;</div><div class="line">      this.msg = &apos;&apos;</div><div class="line">    &#125;,</div><div class="line">    ...mapActions([&apos;newMessage&apos;])</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>模板仍然刚好一样，所以我甚至不需要费心怎么去引入它。最大的不同在于：</p>
 <ol>
 <li>使用<code>mapState</code>来生成对共享消息集合的引用。</li>
 <li>使用<code>mapActions</code>来生成创建一个新消息的动作（action）。</li>
@@ -541,43 +413,12 @@ export default {
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>所以，正如你所希望看到的，自己进行简单的状态共享和使用 Vuex 进行共享并没有多大区别。而 Vuex <strong>最大的</strong>优点在于它为你形式化了集中处理数据存储的过程，并提供了所有功能方法去处理那些数据。</p>
 <p>最初，当你阅读 Vuex 的文档和示例的时候，它那些针对 mutations，actions 和 modules 的单独文档很容易让人感觉困扰。但是如果你敢于跨出那一步，简单地在<code>store.js</code>文件里写一些关于它们的代码来开始学习。随着这个文件的大小增加，你就将找到正确的时间移步到<code>actions.js</code>里，或者是把它们更进一步地分离开来。</p>
 <p>不要着急，慢慢来，一步一个台阶。当然也可以使用<a href="https://github.com/vuejs/vue-cli" target="_blank" rel="external">vue-cli</a>从创建一个模板开始，我使用<a href="https://github.com/vuejs-templates/browserify" target="_blank" rel="external">browserify</a>模板，并把下面的代码添加进我的<code>package.json</code>文件。</p>
-<pre><code>&quot;dependencies&quot;: {
-    &quot;vue&quot;: &quot;^2.0.0-rc.6&quot;,
-    &quot;vuex&quot;: &quot;^2.0.0-rc.5&quot;
-}
-</code></pre><h2 id="还在看吗？"><a href="#还在看吗？" class="headerlink" title="还在看吗？"></a>还在看吗？</h2><p>我知道我还说过要再讲一个“不好的”方式。再次，这个演示恰好也是<a href="https://benjaminlistwon.com/demo/dataflow/evil/index.html" target="_blank" rel="external">一样</a>的。不好的地方在于我利用了 Vue 2.0 里单向绑定的特性来注入回调函数，从而允许了父子模板之间顺序的双向绑定。首先，来看一下<a href="http://rc.vuejs.org/guide/components.html#One-Way-Data-Flow" target="_blank" rel="external">2.0文档中的这个部分</a>，然后再来看看我这个不好的方法。</p>
-<h5 id="App-vue-1"><a href="#App-vue-1" class="headerlink" title="App.vue"></a>App.vue</h5><pre><code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;col&quot;&gt;
-    &lt;client clientid=&quot;Client A&quot; :messages=&quot;messages&quot; :callback=&quot;newMessage&quot;&gt;&lt;/client&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;col&quot;&gt;
-    &lt;client clientid=&quot;Client B&quot; :messages=&quot;messages&quot; :callback=&quot;newMessage&quot;&gt;&lt;/client&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>这里，我在组件上使用了一个属性将一个动态绑定传递到<code>messages</code>集合里。<strong>但是</strong>，我同时还传递了一个动作函数，所以可以在子组件里调用它。</p>
-<h5 id="Client-vue-3"><a href="#Client-vue-3" class="headerlink" title="Client.vue"></a>Client.vue</h5><pre><code>&lt;script&gt;
-export default {
-  data() {
-    return {
-      msg: &apos;&apos;
-    }
-  },
-  props: [&apos;clientid&apos;, &apos;messages&apos;, &apos;callback&apos;],
-  methods: {
-    trySendMessage() {
-      this.callback({
-        text: this.msg,
-        sender: this.clientid
-      })
-      this.resetMessage()
-    },
-    resetMessage() {
-      this.msg = &apos;&apos;
-    }
-  }
-}
-&lt;/script&gt;
-</code></pre><p>这里就是不好的做法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&quot;dependencies&quot;: &#123;</div><div class="line">    &quot;vue&quot;: &quot;^2.0.0-rc.6&quot;,</div><div class="line">    &quot;vuex&quot;: &quot;^2.0.0-rc.5&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="还在看吗？"><a href="#还在看吗？" class="headerlink" title="还在看吗？"></a>还在看吗？</h2><p>我知道我还说过要再讲一个“不好的”方式。再次，这个演示恰好也是<a href="https://benjaminlistwon.com/demo/dataflow/evil/index.html" target="_blank" rel="external">一样</a>的。不好的地方在于我利用了 Vue 2.0 里单向绑定的特性来注入回调函数，从而允许了父子模板之间顺序的双向绑定。首先，来看一下<a href="http://rc.vuejs.org/guide/components.html#One-Way-Data-Flow" target="_blank" rel="external">2.0文档中的这个部分</a>，然后再来看看我这个不好的方法。</p>
+<h5 id="App-vue-1"><a href="#App-vue-1" class="headerlink" title="App.vue"></a>App.vue</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col&quot;&gt;</div><div class="line">    &lt;client clientid=&quot;Client A&quot; :messages=&quot;messages&quot; :callback=&quot;newMessage&quot;&gt;&lt;/client&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col&quot;&gt;</div><div class="line">    &lt;client clientid=&quot;Client B&quot; :messages=&quot;messages&quot; :callback=&quot;newMessage&quot;&gt;&lt;/client&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>这里，我在组件上使用了一个属性将一个动态绑定传递到<code>messages</code>集合里。<strong>但是</strong>，我同时还传递了一个动作函数，所以可以在子组件里调用它。</p>
+<h5 id="Client-vue-3"><a href="#Client-vue-3" class="headerlink" title="Client.vue"></a>Client.vue</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">export default &#123;</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      msg: &apos;&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  props: [&apos;clientid&apos;, &apos;messages&apos;, &apos;callback&apos;],</div><div class="line">  methods: &#123;</div><div class="line">    trySendMessage() &#123;</div><div class="line">      this.callback(&#123;</div><div class="line">        text: this.msg,</div><div class="line">        sender: this.clientid</div><div class="line">      &#125;)</div><div class="line">      this.resetMessage()</div><div class="line">    &#125;,</div><div class="line">    resetMessage() &#123;</div><div class="line">      this.msg = &apos;&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这里就是不好的做法。</p>
 <p>要问为什么有这么不好吗？</p>
 <ol>
 <li>我们正在破坏之前图中所展示的单向循环。</li>
@@ -895,6 +736,7 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
                 
 				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -1038,11 +880,14 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Window Load-->
 <script>
-    // Post_Toc parent position fixed
     $(window).load(function() {
+        // Post_Toc parent position fixed
         $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
 </script>
+
+<!-- MathJax Load-->
+
             </main>
         </div>
 		

@@ -157,6 +157,9 @@
 
 	<script src="/js/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
 	<!-- UC Browser Compatible-->
 	<script>
 		var agent = navigator.userAgent.toLowerCase();
@@ -270,7 +273,7 @@
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;1,283&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;1,289&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
     <span class="post-read">预计阅读&nbsp;5&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
@@ -341,90 +344,26 @@
 <h2 id="使用-http服务发送ajax请求时后端无法判断请求是XMLHttpRequest"><a href="#使用-http服务发送ajax请求时后端无法判断请求是XMLHttpRequest" class="headerlink" title="使用$http服务发送ajax请求时后端无法判断请求是XMLHttpRequest"></a>使用<code>$http</code>服务发送ajax请求时后端无法判断请求是<code>XMLHttpRequest</code></h2><p><strong>问题及场景</strong>：<br>有时候后端会读取请求中<code>header</code>的<code>X-Requested-With</code>字段判断前端的请求是否为异步请求<code>XMLHttpRequest</code>，在使用<code>$http</code>服务发送请求时后端却判断为<code>false</code>。</p>
 <p><strong>原因</strong>：<br><code>&#39;X-Requested-With&#39; : &#39;XMLHttpRequest&#39;</code>并不属于标准的<code>header</code>内容，因此Angular不会在<code>header</code>中默认设置该字段。</p>
 <p><strong>解决方案</strong>：<br>手动在<code>$httpProvider</code>中设置该字段，代码如下：</p>
-<pre><code>$httpProvider.defaults.headers.common[&apos;X-Requested-With&apos;] = &apos;XMLHttpRequest&apos;;
-</code></pre><p><strong>note</strong>:<br>可以创建一个公用服务，在配置方法做这个修改，公用服务注入到每个module里就一劳永逸了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$httpProvider.defaults.headers.common[&apos;X-Requested-With&apos;] = &apos;XMLHttpRequest&apos;;</div></pre></td></tr></table></figure>
+<p><strong>note</strong>:<br>可以创建一个公用服务，在配置方法做这个修改，公用服务注入到每个module里就一劳永逸了。</p>
 <h2 id="使用-http-post-方法参数类型不正确"><a href="#使用-http-post-方法参数类型不正确" class="headerlink" title="使用$http.post()方法参数类型不正确"></a>使用<code>$http.post()</code>方法参数类型不正确</h2><p><strong>问题及场景</strong>：<br>在angular中，使用<code>$http.post()</code>方法提交数据时，发现所带参数并非<code>Form Data</code>，而是JSON对象，导致服务器无法使用一般方法正确获取参数，而使用jQuery的<code>$.post()</code>方法却可以正确获取。</p>
 <p><strong>原因</strong>：<br>两者的post对header的处理有所不同，jQuery会把作为JSON对象的myData序列化，例如：</p>
-<pre><code>var myData = { a : 1, b : 2 };
-// jQuery在post数据之前会把myData转换成字符串：&quot;a=1&amp;b=2&quot;
-</code></pre><p>angular显然没做这个处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var myData = &#123; a : 1, b : 2 &#125;;</div><div class="line">// jQuery在post数据之前会把myData转换成字符串：&quot;a=1&amp;b=2&quot;</div></pre></td></tr></table></figure>
+<p>angular显然没做这个处理。</p>
 <p><strong>解决方案</strong>：<br>修改Angular的<code>$httpProvider</code>的默认处理，代码如下：</p>
-<pre><code>$httpProvider.defaults.transformRequest = function(obj){
-    var str = [];
-    for(var p in obj) {
-        str.push(encodeURIComponent(p) + &apos;=&apos; + encodeURIComponent(obj[p]));
-    }
-    return str.join(&quot;&amp;&quot;);
-};
-
-$httpProvider.defaults.headers.post = {
-    &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;
-};
-</code></pre><p><strong>note</strong>:<br>同样应该在公用服务中做此修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$httpProvider.defaults.transformRequest = function(obj)&#123;</div><div class="line">    var str = [];</div><div class="line">    for(var p in obj) &#123;</div><div class="line">        str.push(encodeURIComponent(p) + &apos;=&apos; + encodeURIComponent(obj[p]));</div><div class="line">    &#125;</div><div class="line">    return str.join(&quot;&amp;&quot;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">$httpProvider.defaults.headers.post = &#123;</div><div class="line">    &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>note</strong>:<br>同样应该在公用服务中做此修改。</p>
 <h2 id="调用-scope-apply-fn-更新视图时报错-rootScope-inprog"><a href="#调用-scope-apply-fn-更新视图时报错-rootScope-inprog" class="headerlink" title="调用$scope.$apply(fn)更新视图时报错$rootScope:inprog"></a>调用<code>$scope.$apply(fn)</code>更新视图时报错<code>$rootScope:inprog</code></h2><p><strong>问题及场景</strong>：<br>在更新$scope上的model数据时，如果是在<code>digest</code>监听外，会发现视图并没有自动更新，于是手动调用<code>$scope.$apply(fn)</code>方法通知视图进行更新，却发现有时候会报错<code>$rootScope:inprog</code>。</p>
 <p><strong>原因</strong>：<br>该错误原因是在进程当中<code>$scope.$apply(fn)</code>正在执行，不能在此基础上重复调用该方法。</p>
 <p><strong>解决方案</strong>：<br>可以在调用该方法时做一个安全检测，封装代码如下：</p>
-<pre><code>$scope.safeApply = function(fn) {
-    var phase = this.$root.$$phase;
-    if (phase === &apos;$apply&apos; || phase === &apos;$digest&apos;) {
-        if (fn &amp;&amp; (typeof(fn) === &apos;function&apos;)) {
-            fn();
-        }
-    } else {
-        this.$apply(fn);
-    }
-};
-</code></pre><p><strong>note</strong>:<br><code>$$phase</code>变量是<code>scope</code>中的一个内部属性，如果为<code>null</code>或者<code>undefined</code>则说明进程中没有<code>$apply</code>方法在运行，则可以直接调用，否则直接执行入参方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$scope.safeApply = function(fn) &#123;</div><div class="line">    var phase = this.$root.$$phase;</div><div class="line">    if (phase === &apos;$apply&apos; || phase === &apos;$digest&apos;) &#123;</div><div class="line">        if (fn &amp;&amp; (typeof(fn) === &apos;function&apos;)) &#123;</div><div class="line">            fn();</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        this.$apply(fn);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>note</strong>:<br><code>$$phase</code>变量是<code>scope</code>中的一个内部属性，如果为<code>null</code>或者<code>undefined</code>则说明进程中没有<code>$apply</code>方法在运行，则可以直接调用，否则直接执行入参方法。</p>
 <h2 id="添加统一拦截器对ajax的请求或返回做处理"><a href="#添加统一拦截器对ajax的请求或返回做处理" class="headerlink" title="添加统一拦截器对ajax的请求或返回做处理"></a>添加统一拦截器对ajax的请求或返回做处理</h2><p><strong>问题及场景</strong>：<br>我遇到的场景是在发送异步请求时，后端会先判断用户是否已经登录，如果未登录则会在<code>response</code>的<code>header</code>中添加一个<code>redirecturl</code>字段，前端读取该字段控制页面跳转到该url，我首先想到的解决方案就是前端需要做一个统一拦截器，对所有异步请求的<code>response</code>进行拦截。</p>
 <p><strong>解决方案</strong>：<br>通过看Angular中<code>$httpProvider</code>部分的源码注释，发现了拦截器的几种写法，我选择的写法源码注释如下：</p>
-<pre><code>*   // register the interceptor as a service
-*   $provide.factory(&apos;myHttpInterceptor&apos;, function($q, dependency1, dependency2) {
-*     return {
-*       // optional method
-*       &apos;request&apos;: function(config) {
-*         // do something on success
-*         return config;
-*       },
-*
-*       // optional method
-*      &apos;requestError&apos;: function(rejection) {
-*         // do something on error
-*         if (canRecover(rejection)) {
-*           return responseOrNewPromise
-*         }
-*         return $q.reject(rejection);
-*       },
-*       // optional method
-*       &apos;response&apos;: function(response) {
-*         // do something on success
-*         return response;
-*       },
-*
-*       // optional method
-*      &apos;responseError&apos;: function(rejection) {
-*         // do something on error
-*         if (canRecover(rejection)) {
-*           return responseOrNewPromise
-*         }
-*         return $q.reject(rejection);
-*       }
-*     };
-*   });
-*   $httpProvider.interceptors.push(&apos;myHttpInterceptor&apos;);
-</code></pre><p>我拦截<code>response</code>的代码如下：</p>
-<pre><code>commonService.factory(&apos;redirectInterceptor&apos;, function(){
-    return {
-        &apos;response&apos;: function(response) {
-            if(response.headers().redirecturl) {
-                window.location.href = response.headers().redirecturl;
-            }
-            return response;
-        }
-    };
-});
-
-$httpProvider.interceptors.push(&apos;redirectInterceptor&apos;);
-</code></pre><p><strong>note</strong>：<br>最后一行表示将该拦截器登记到<code>$httpProvider</code>的拦截器中，同样应该写在公用服务的配置方法当中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">*   // register the interceptor as a service</div><div class="line">*   $provide.factory(&apos;myHttpInterceptor&apos;, function($q, dependency1, dependency2) &#123;</div><div class="line">*     return &#123;</div><div class="line">*       // optional method</div><div class="line">*       &apos;request&apos;: function(config) &#123;</div><div class="line">*         // do something on success</div><div class="line">*         return config;</div><div class="line">*       &#125;,</div><div class="line">*</div><div class="line">*       // optional method</div><div class="line">*      &apos;requestError&apos;: function(rejection) &#123;</div><div class="line">*         // do something on error</div><div class="line">*         if (canRecover(rejection)) &#123;</div><div class="line">*           return responseOrNewPromise</div><div class="line">*         &#125;</div><div class="line">*         return $q.reject(rejection);</div><div class="line">*       &#125;,</div><div class="line">*       // optional method</div><div class="line">*       &apos;response&apos;: function(response) &#123;</div><div class="line">*         // do something on success</div><div class="line">*         return response;</div><div class="line">*       &#125;,</div><div class="line">*</div><div class="line">*       // optional method</div><div class="line">*      &apos;responseError&apos;: function(rejection) &#123;</div><div class="line">*         // do something on error</div><div class="line">*         if (canRecover(rejection)) &#123;</div><div class="line">*           return responseOrNewPromise</div><div class="line">*         &#125;</div><div class="line">*         return $q.reject(rejection);</div><div class="line">*       &#125;</div><div class="line">*     &#125;;</div><div class="line">*   &#125;);</div><div class="line">*   $httpProvider.interceptors.push(&apos;myHttpInterceptor&apos;);</div></pre></td></tr></table></figure>
+<p>我拦截<code>response</code>的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">commonService.factory(&apos;redirectInterceptor&apos;, function()&#123;</div><div class="line">    return &#123;</div><div class="line">        &apos;response&apos;: function(response) &#123;</div><div class="line">            if(response.headers().redirecturl) &#123;</div><div class="line">                window.location.href = response.headers().redirecturl;</div><div class="line">            &#125;</div><div class="line">            return response;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$httpProvider.interceptors.push(&apos;redirectInterceptor&apos;);</div></pre></td></tr></table></figure>
+<p><strong>note</strong>：<br>最后一行表示将该拦截器登记到<code>$httpProvider</code>的拦截器中，同样应该写在公用服务的配置方法当中。</p>
 <h2 id="controller之间的通信问题"><a href="#controller之间的通信问题" class="headerlink" title="controller之间的通信问题"></a><code>controller</code>之间的通信问题</h2><p><strong>问题及场景</strong>：<br>当有两个视图分别由两个<code>controller</code>控制时，其中一个视图发生变化，需通知另一个视图产生了此变化。</p>
 <p><strong>解决方案</strong>：<br>总的来说，Angular中控制器通信有三种处理方法：</p>
 <ul>
@@ -433,33 +372,8 @@ $httpProvider.interceptors.push(&apos;redirectInterceptor&apos;);
 <li>服务方式 写一个服务的单例然后通过注入来使用。</li>
 </ul>
 <p>我选择了最后一种方法，示例代码如下：</p>
-<pre><code>//JS
-var app = angular.module(&apos;myApp&apos;, []);
-app.factory(&apos;instance&apos;, function(){
-    return {};
-});
-app.controller(&apos;MainCtrl&apos;, function($scope, instance) {
-    $scope.change = function() {
-    instance.name = $scope.test;
-    };
-});
-app.controller(&apos;sideCtrl&apos;, function($scope, instance) {
-    $scope.add = function() {
-        $scope.name = instance.name;
-    };
-});
-
-
-
-//html
-&lt;div ng-controller=&quot;MainCtrl&quot;&gt;
-    &lt;input type=&quot;text&quot; ng-model=&quot;test&quot; /&gt;
-    &lt;div ng-click=&quot;change()&quot;&gt;click me&lt;/div&gt;
-&lt;/div&gt;
-&lt;div ng-controller=&quot;sideCtrl&quot;&gt;
-    &lt;div ng-click=&quot;add()&quot;&gt;my name &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p><strong>note</strong>:<br>在Angular中服务是一个单例，所以在服务中生成一个对象，该对象就可以利用依赖注入的方式在所有的控制器中共享。<br>如果不是通过点击产生变化，还可结合<code>$scope.$watch()</code>方法来进行通信。<br>其他两种方法可参考站内文章：<a href="https://segmentfault.com/a/1190000000639592" target="_blank" rel="external">AngularJS控制器controller如何通信？</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//JS</div><div class="line">var app = angular.module(&apos;myApp&apos;, []);</div><div class="line">app.factory(&apos;instance&apos;, function()&#123;</div><div class="line">    return &#123;&#125;;</div><div class="line">&#125;);</div><div class="line">app.controller(&apos;MainCtrl&apos;, function($scope, instance) &#123;</div><div class="line">    $scope.change = function() &#123;</div><div class="line">    instance.name = $scope.test;</div><div class="line">    &#125;;</div><div class="line">&#125;);</div><div class="line">app.controller(&apos;sideCtrl&apos;, function($scope, instance) &#123;</div><div class="line">    $scope.add = function() &#123;</div><div class="line">        $scope.name = instance.name;</div><div class="line">    &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">//html</div><div class="line">&lt;div ng-controller=&quot;MainCtrl&quot;&gt;</div><div class="line">    &lt;input type=&quot;text&quot; ng-model=&quot;test&quot; /&gt;</div><div class="line">    &lt;div ng-click=&quot;change()&quot;&gt;click me&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div ng-controller=&quot;sideCtrl&quot;&gt;</div><div class="line">    &lt;div ng-click=&quot;add()&quot;&gt;my name &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><strong>note</strong>:<br>在Angular中服务是一个单例，所以在服务中生成一个对象，该对象就可以利用依赖注入的方式在所有的控制器中共享。<br>如果不是通过点击产生变化，还可结合<code>$scope.$watch()</code>方法来进行通信。<br>其他两种方法可参考站内文章：<a href="https://segmentfault.com/a/1190000000639592" target="_blank" rel="external">AngularJS控制器controller如何通信？</a></p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>以上为我在编写一个angular应用时遇到的问题及解决方案，记录并分享出来，欢迎大家指正！</p>
 
 	
@@ -771,6 +685,7 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
                 
 				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -914,11 +829,14 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Window Load-->
 <script>
-    // Post_Toc parent position fixed
     $(window).load(function() {
+        // Post_Toc parent position fixed
         $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
 </script>
+
+<!-- MathJax Load-->
+
             </main>
         </div>
 		

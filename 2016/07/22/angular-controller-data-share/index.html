@@ -157,6 +157,9 @@
 
 	<script src="/js/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
 	<!-- UC Browser Compatible-->
 	<script>
 		var agent = navigator.userAgent.toLowerCase();
@@ -270,7 +273,7 @@
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;1,044&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;1,047&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
     <span class="post-read">预计阅读&nbsp;4&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
@@ -348,84 +351,19 @@
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>假设有两个并排的面板，每个面板代表一个指令（directive）：</p>
 <p><img src="https://daveceddia.com/images/two_panes@2x.png" alt=""></p>
 <p>下面是面板1的代码：</p>
-<pre><code>angular.directive(&apos;paneOne&apos;, function() {
-  return {
-    restrict: &apos;E&apos;,
-    scope: {},
-    template: [
-      &apos;&lt;div&gt;&apos;,
-        &apos;&lt;input ng-model=&quot;p1.text&quot;&gt;&apos;,
-        &apos;&lt;button ng-click=&quot;p1.addToList()&quot;&gt;Add To List&lt;/button&gt;&apos;,
-      &apos;&lt;/div&gt;&apos;
-    ].join(&apos;&apos;),
-    controllerAs: &apos;p1&apos;,
-    controller: function() {
-      var vm = this;
-      vm.text = &quot;&quot;;
-      vm.addToList = function() {
-        // TODO: add to the list in Pane 2 somehow
-        vm.text = &quot;&quot;;
-      };
-    }
-  };
-});
-</code></pre><p>面板2的：</p>
-<pre><code>angular.directive(&apos;paneTwo&apos;, function() {
-  return {
-    restrict: &apos;E&apos;,
-    scope: {},
-    template: [
-      &apos;&lt;ul&gt;&apos;,
-        &apos;&lt;li ng-repeat=&quot;item in p2.listItems&quot;&gt;{{ item }}&lt;/li&gt;&apos;,
-      &apos;&lt;/ul&gt;&apos;
-    ].join(&apos;&apos;),
-    controllerAs: &apos;p2&apos;,
-    controller: function() {
-      var vm = this;
-      // TODO: get this list of items from Pane 1 somehow
-      vm.listItems = [];
-    }
-  };
-});
-</code></pre><p>我们想要实现的是在面板1的输入框中输入某些东西，然后点击按钮 “Add To List”, 这条内容就会在面板2的列表中出现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">angular.directive(&apos;paneOne&apos;, function() &#123;</div><div class="line">  return &#123;</div><div class="line">    restrict: &apos;E&apos;,</div><div class="line">    scope: &#123;&#125;,</div><div class="line">    template: [</div><div class="line">      &apos;&lt;div&gt;&apos;,</div><div class="line">        &apos;&lt;input ng-model=&quot;p1.text&quot;&gt;&apos;,</div><div class="line">        &apos;&lt;button ng-click=&quot;p1.addToList()&quot;&gt;Add To List&lt;/button&gt;&apos;,</div><div class="line">      &apos;&lt;/div&gt;&apos;</div><div class="line">    ].join(&apos;&apos;),</div><div class="line">    controllerAs: &apos;p1&apos;,</div><div class="line">    controller: function() &#123;</div><div class="line">      var vm = this;</div><div class="line">      vm.text = &quot;&quot;;</div><div class="line">      vm.addToList = function() &#123;</div><div class="line">        // TODO: add to the list in Pane 2 somehow</div><div class="line">        vm.text = &quot;&quot;;</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>面板2的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">angular.directive(&apos;paneTwo&apos;, function() &#123;</div><div class="line">  return &#123;</div><div class="line">    restrict: &apos;E&apos;,</div><div class="line">    scope: &#123;&#125;,</div><div class="line">    template: [</div><div class="line">      &apos;&lt;ul&gt;&apos;,</div><div class="line">        &apos;&lt;li ng-repeat=&quot;item in p2.listItems&quot;&gt;&#123;&#123; item &#125;&#125;&lt;/li&gt;&apos;,</div><div class="line">      &apos;&lt;/ul&gt;&apos;</div><div class="line">    ].join(&apos;&apos;),</div><div class="line">    controllerAs: &apos;p2&apos;,</div><div class="line">    controller: function() &#123;</div><div class="line">      var vm = this;</div><div class="line">      // TODO: get this list of items from Pane 1 somehow</div><div class="line">      vm.listItems = [];</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>我们想要实现的是在面板1的输入框中输入某些东西，然后点击按钮 “Add To List”, 这条内容就会在面板2的列表中出现。</p>
 <h3 id="创建一个服务保持共享状态"><a href="#创建一个服务保持共享状态" class="headerlink" title="创建一个服务保持共享状态"></a>创建一个服务保持共享状态</h3><p>为了在两个甚至更多的控制器间共享数据，创建一个服务去扮演中间件的角色。这样可以使控制器（或组件）保持松散耦合：它们不需要知道其他的控制器（或组件）是怎么样的，它们只需要知道数据源 - 你创建的中间件服务。</p>
-<pre><code>angular.factory(&apos;sharedList&apos;, function() {
-  var list = [];
-
-  return {
-    addItem: addItem,
-    getList: getList
-  };
-
-  function addItem(item) {
-    list.push(item);
-  }
-
-  function getList() {
-    return list;
-  }
-});
-</code></pre><p>上面这个服务非常简单，调用 <code>addItem</code> 把数据放到列表里，然后调用 <code>getList</code> 获取整个列表。这真的很简单，甚至不需要去移除或者清空列表项，看到这个方法的简便之处了吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">angular.factory(&apos;sharedList&apos;, function() &#123;</div><div class="line">  var list = [];</div><div class="line"></div><div class="line">  return &#123;</div><div class="line">    addItem: addItem,</div><div class="line">    getList: getList</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  function addItem(item) &#123;</div><div class="line">    list.push(item);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  function getList() &#123;</div><div class="line">    return list;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面这个服务非常简单，调用 <code>addItem</code> 把数据放到列表里，然后调用 <code>getList</code> 获取整个列表。这真的很简单，甚至不需要去移除或者清空列表项，看到这个方法的简便之处了吧。</p>
 <h3 id="在任何需要的地方注入服务"><a href="#在任何需要的地方注入服务" class="headerlink" title="在任何需要的地方注入服务"></a>在任何需要的地方注入服务</h3><p>既然我们已经创建好了我们的服务，我们就需要在任何需要访问或修改数据的地方去注入它了。</p>
 <p>先从面板1的控制器开始：</p>
-<pre><code>// Inject sharedList
-controller: function(sharedList) {
-  var vm = this;
-  vm.text = &quot;&quot;;
-  vm.addToList = function() {
-    // Stuff the item into the shared list
-    sharedList.addItem(vm.text);
-    vm.text = &quot;&quot;;
-  };
-}
-</code></pre><p>然后是面板2的控制器，获取数据：</p>
-<pre><code>// Inject sharedList
-controller: function(sharedList) {
-  var vm = this;
-  // Read the data
-  vm.listItems = sharedList.getList();
-}
-</code></pre><p>从<a href="http://jsbin.com/wogumemufi/1/embed?js,output" target="_blank" rel="external">JSBin</a>里看看运行情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Inject sharedList</div><div class="line">controller: function(sharedList) &#123;</div><div class="line">  var vm = this;</div><div class="line">  vm.text = &quot;&quot;;</div><div class="line">  vm.addToList = function() &#123;</div><div class="line">    // Stuff the item into the shared list</div><div class="line">    sharedList.addItem(vm.text);</div><div class="line">    vm.text = &quot;&quot;;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后是面板2的控制器，获取数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// Inject sharedList</div><div class="line">controller: function(sharedList) &#123;</div><div class="line">  var vm = this;</div><div class="line">  // Read the data</div><div class="line">  vm.listItems = sharedList.getList();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从<a href="http://jsbin.com/wogumemufi/1/embed?js,output" target="_blank" rel="external">JSBin</a>里看看运行情况。</p>
 <h3 id="但不需要观察器-watchers-吗？"><a href="#但不需要观察器-watchers-吗？" class="headerlink" title="但不需要观察器(watchers)吗？"></a>但不需要观察器(watchers)吗？</h3><p>当我写到这儿的时候，我非常确定面板2中的列表在我添加一些观察器前<strong>不会自动更新</strong> 。</p>
 <p>但是接下来当我把代码放到 JSBin 里的时候…你瞧，它竟然可以更新！为什么呢？</p>
 <ol>
@@ -750,6 +688,7 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
                 
 				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -893,11 +832,14 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Window Load-->
 <script>
-    // Post_Toc parent position fixed
     $(window).load(function() {
+        // Post_Toc parent position fixed
         $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
 </script>
+
+<!-- MathJax Load-->
+
             </main>
         </div>
 		

@@ -157,6 +157,9 @@
 
 	<script src="/js/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
 	<!-- UC Browser Compatible-->
 	<script>
 		var agent = navigator.userAgent.toLowerCase();
@@ -270,7 +273,7 @@
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;5,638&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;5,623&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
     <span class="post-read">预计阅读&nbsp;23&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
@@ -374,91 +377,28 @@
 <p>安装完成后，构建项目。</p>
 <p>没报错吧？很好，现在你可以随便使用 Core Plot 啦，感谢 CocoaPods。:]</p>
 <p>如果你遇到了任何报错，可以尝试通过 <code>sudo gem install cocoapods</code> 更新一下 CocoaPods 然后再次运行 <code>pod install</code>。</p>
-<h2 id="创建饼图"><a href="#创建饼图" class="headerlink" title="创建饼图"></a>创建饼图</h2><p>打开 <em>PieChartViewController.swift</em> 并添加下面这行引入：</p>
-<pre><code>import CorePlot
-</code></pre><p>接着，添加下面这个属性：</p>
-<pre><code>@IBOutlet weak var hostView: CPTGraphHostingView!
-</code></pre><p><code>CPTGraphHostingView</code> 负责“托管”一个图表或图形。你可以把它想象成一个“图形容器”。</p>
+<h2 id="创建饼图"><a href="#创建饼图" class="headerlink" title="创建饼图"></a>创建饼图</h2><p>打开 <em>PieChartViewController.swift</em> 并添加下面这行引入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import CorePlot</div></pre></td></tr></table></figure></p>
+<p>接着，添加下面这个属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@IBOutlet weak var hostView: CPTGraphHostingView!</div></pre></td></tr></table></figure>
+<p><code>CPTGraphHostingView</code> 负责“托管”一个图表或图形。你可以把它想象成一个“图形容器”。</p>
 <p>然后，把下面这个类扩展添加到文件结尾的花括号之后：</p>
-<pre><code>extension PieChartViewController: CPTPieChartDataSource, CPTPieChartDelegate {
-
-  func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt {
-    return 0
-  }
-
-  func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? {
-    return 0
-  }
-
-  func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -&gt; CPTLayer? {
-    return nil
-  }
-
-  func sliceFillForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; CPTFill? {
-    return nil
-  }
-
-  func legendTitleForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; String? {
-    return nil
-  }
-}
-</code></pre><p>你将通过 <code>CPTPieChartDataSource</code> 为一个 Core Plot 图表提供数据，同时你会通过 <code>CPTPieChartDelegate</code> 得到用户交互的所有事件。随着教程递进，你将填满这些方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">extension PieChartViewController: CPTPieChartDataSource, CPTPieChartDelegate &#123;</div><div class="line"></div><div class="line">  func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -&gt; CPTLayer? &#123;</div><div class="line">    return nil</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func sliceFillForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; CPTFill? &#123;</div><div class="line">    return nil</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func legendTitleForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; String? &#123;</div><div class="line">    return nil</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你将通过 <code>CPTPieChartDataSource</code> 为一个 Core Plot 图表提供数据，同时你会通过 <code>CPTPieChartDelegate</code> 得到用户交互的所有事件。随着教程递进，你将填满这些方法。</p>
 <h3 id="建立图表托管视图"><a href="#建立图表托管视图" class="headerlink" title="建立图表托管视图"></a>建立图表托管视图</h3><p>继续往下，打开 <em>Main.storyboard</em> 然后选择 <code>PieChartViewController</code> 窗口。</p>
 <p>在这个视图上拖出一个新的 <code>UIView</code>，然后把它的类更改成 <code>CPTGraphHostingView</code>，并将它连接到 <code>hostView</code>。</p>
 <p>对这个视图的每个方向添加约束让撑满父视图，并确认没有设置外边距的约束：</p>
 <p><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2016/04/swiftrates-05.png" alt=""></p>
 <p>设置一个你喜欢的背景色。我使用了透明度为92%的灰度颜色。</p>
 <p>现在回到 <em>PieChartViewController.swift</em> ，在 <code>viewDidLoad()</code> 后面添加下面的方法：</p>
-<pre><code>override func viewDidLayoutSubviews() {
-  super.viewDidLayoutSubviews()
-  initPlot()
-}
-
-func initPlot() {
-  configureHostView()
-  configureGraph()
-  configureChart()
-  configureLegend()
-}
-
-func configureHostView() {
-}
-
-func configureGraph() {
-}
-
-func configureChart() {
-}
-
-func configureLegend() {
-}
-</code></pre><p>这样子就正好在子视图渲染好后设置了绘制策略。这里是你最早为视图设置框架大小的地方，接下来你将需要配置绘制策略。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">override func viewDidLayoutSubviews() &#123;</div><div class="line">  super.viewDidLayoutSubviews()</div><div class="line">  initPlot()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func initPlot() &#123;</div><div class="line">  configureHostView()</div><div class="line">  configureGraph()</div><div class="line">  configureChart()</div><div class="line">  configureLegend()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureHostView() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureGraph() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureChart() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureLegend() &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样子就正好在子视图渲染好后设置了绘制策略。这里是你最早为视图设置框架大小的地方，接下来你将需要配置绘制策略。</p>
 <p><code>initPlot()</code> 里的每个方法都代表了一个设置绘制策略的阶段。这样子可以让代码保持其可维护性。</p>
 <p>把下面这行添加进 <code>configureHostView()</code>：</p>
-<pre><code>hostView.allowPinchScaling = false
-</code></pre><p>这行代码将对饼图禁用手势捏合缩放，它决定了托管视图对捏合手势是否会有反应。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hostView.allowPinchScaling = false</div></pre></td></tr></table></figure>
+<p>这行代码将对饼图禁用手势捏合缩放，它决定了托管视图对捏合手势是否会有反应。</p>
 <p>接下来你需要添加一个图表到<code>hostView</code>。添加下面的代码到 <code>configureGraph()</code> 里吧：</p>
-<pre><code>// 1 - Create and configure the graph
-let graph = CPTXYGraph(frame: hostView.bounds)
-hostView.hostedGraph = graph
-graph.paddingLeft = 0.0
-graph.paddingTop = 0.0
-graph.paddingRight = 0.0
-graph.paddingBottom = 0.0
-graph.axisSet = nil
-
-// 2 - Create text style
-let textStyle: CPTMutableTextStyle = CPTMutableTextStyle()
-textStyle.color = CPTColor.blackColor()
-textStyle.fontName = &quot;HelveticaNeue-Bold&quot;
-textStyle.fontSize = 16.0
-textStyle.textAlignment = .Center
-
-// 3 - Set graph title and text style
-graph.title = &quot;\(base.name) exchange rates\n\(rate.date)&quot;
-graph.titleTextStyle = textStyle
-graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top
-</code></pre><p>下面对每个部分的代码进行分解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 1 - Create and configure the graph</div><div class="line">let graph = CPTXYGraph(frame: hostView.bounds)</div><div class="line">hostView.hostedGraph = graph</div><div class="line">graph.paddingLeft = 0.0</div><div class="line">graph.paddingTop = 0.0</div><div class="line">graph.paddingRight = 0.0</div><div class="line">graph.paddingBottom = 0.0</div><div class="line">graph.axisSet = nil</div><div class="line"></div><div class="line">// 2 - Create text style</div><div class="line">let textStyle: CPTMutableTextStyle = CPTMutableTextStyle()</div><div class="line">textStyle.color = CPTColor.blackColor()</div><div class="line">textStyle.fontName = &quot;HelveticaNeue-Bold&quot;</div><div class="line">textStyle.fontSize = 16.0</div><div class="line">textStyle.textAlignment = .Center</div><div class="line"></div><div class="line">// 3 - Set graph title and text style</div><div class="line">graph.title = &quot;\(base.name) exchange rates\n\(rate.date)&quot;</div><div class="line">graph.titleTextStyle = textStyle</div><div class="line">graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top</div></pre></td></tr></table></figure>
+<p>下面对每个部分的代码进行分解：</p>
 <ol>
 <li><p>首先你创建了一个 <code>CPTXYGraph</code> 的实例并指定它作为 <code>hostView</code> 的 <code>hostedGraph</code>。这就将图表和托管视图联系起来了。</p>
 <p>这个 <code>CPTGraph</code> 包括了你所看到的标准图表或图形的全部东西：边，标题，绘制相关数据，轴和图例。</p>
@@ -472,34 +412,8 @@ graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top
 <p><img src="http://ac-Myg6wSTV.clouddn.com/fd0411a63ef0affb512a.png" alt="Core Plot Tutorial"></p>
 <h3 id="绘制饼图"><a href="#绘制饼图" class="headerlink" title="绘制饼图"></a>绘制饼图</h3><p>标题看起来不错，但你知道接下来什么会更棒吗？确确实实地看到饼图！</p>
 <p>将下面的代码添加进 <code>configureChart()</code>：</p>
-<pre><code>// 1 - Get a reference to the graph
-let graph = hostView.hostedGraph!
-
-// 2 - Create the chart
-let pieChart = CPTPieChart()
-pieChart.delegate = self
-pieChart.dataSource = self
-pieChart.pieRadius = (min(hostView.bounds.size.width, hostView.bounds.size.height) * 0.7) / 2
-pieChart.identifier = graph.title
-pieChart.startAngle = CGFloat(M_PI_4)
-pieChart.sliceDirection = .Clockwise
-pieChart.labelOffset = -0.6 * pieChart.pieRadius
-
-// 3 - Configure border style
-let borderStyle = CPTMutableLineStyle()
-borderStyle.lineColor = CPTColor.whiteColor()
-borderStyle.lineWidth = 2.0
-pieChart.borderLineStyle = borderStyle
-
-// 4 - Configure text style
-let textStyle = CPTMutableTextStyle()
-textStyle.color = CPTColor.whiteColor()
-textStyle.textAlignment = .Center
-pieChart.labelTextStyle = textStyle
-
-// 3 - Add chart to graph
-graph.addPlot(pieChart)
-</code></pre><p>下面看看这段代码做了什么：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">    // 1 - Get a reference to the graph</div><div class="line">    let graph = hostView.hostedGraph!</div><div class="line"></div><div class="line">    // 2 - Create the chart</div><div class="line">    let pieChart = CPTPieChart()</div><div class="line">    pieChart.delegate = self</div><div class="line">    pieChart.dataSource = self</div><div class="line">    pieChart.pieRadius = (min(hostView.bounds.size.width, hostView.bounds.size.height) * 0.7) / 2</div><div class="line">    pieChart.identifier = graph.title</div><div class="line">    pieChart.startAngle = CGFloat(M_PI_4)</div><div class="line">    pieChart.sliceDirection = .Clockwise</div><div class="line">    pieChart.labelOffset = -0.6 * pieChart.pieRadius</div><div class="line"></div><div class="line">    // 3 - Configure border style</div><div class="line">    let borderStyle = CPTMutableLineStyle()</div><div class="line">    borderStyle.lineColor = CPTColor.whiteColor()</div><div class="line">    borderStyle.lineWidth = 2.0</div><div class="line">    pieChart.borderLineStyle = borderStyle</div><div class="line"></div><div class="line">    // 4 - Configure text style</div><div class="line">    let textStyle = CPTMutableTextStyle()</div><div class="line">    textStyle.color = CPTColor.whiteColor()</div><div class="line">    textStyle.textAlignment = .Center</div><div class="line">    pieChart.labelTextStyle = textStyle</div><div class="line"></div><div class="line">    // 3 - Add chart to graph</div><div class="line">    graph.addPlot(pieChart)</div><div class="line">```</div></pre></td></tr></table></figure>
+<p>下面看看这段代码做了什么：</p>
 <ol>
 <li>首先获取了刚刚创建的图表的引用。</li>
 <li>然后实例化一个 <code>CPTPieChart</code>，将它的代理和数据源设置成这个视图控制器本身，并配置它的一些外观属性。</li>
@@ -509,101 +423,41 @@ graph.addPlot(pieChart)
 </ol>
 <p>如果现在重新构建并运行 app，你将看不到任何变化…因为你还需要实现这个饼图的代理和数据源。</p>
 <p>首先，用下面这段替代了现在的 <code>numberOfRecordsForPlot(_:)</code> 方法：</p>
-<pre><code>func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt {
-  return UInt(symbols.count) ?? 0
-}
-</code></pre><p>这个方法决定了有多少块(部分)显示在饼状图上，它将为每一个标记显示一块(部分)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt &#123;</div><div class="line">  return UInt(symbols.count) ?? 0</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法决定了有多少块(部分)显示在饼状图上，它将为每一个标记显示一块(部分)。</p>
 <p>接下来，用下面这段替换掉 <code>numberForPlot(_:field:recordIndex:)</code> ：</p>
-<pre><code>func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? {
-  let symbol = symbols[Int(idx)]
-  let currencyRate = rate.rates[symbol.name]!.floatValue
-  return 1.0 / currencyRate
-}
-</code></pre><p>饼图会使用这个方法得到索引为 <code>recordIndex</code> 的货币符号的“总”值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? &#123;</div><div class="line">  let symbol = symbols[Int(idx)]</div><div class="line">  let currencyRate = rate.rates[symbol.name]!.floatValue</div><div class="line">  return 1.0 / currencyRate</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>饼图会使用这个方法得到索引为 <code>recordIndex</code> 的货币符号的“总”值。</p>
 <p>你应该注意到这个值并 <em>不是</em> 一个百分比值。取而代之的是，这个方法计算出了相对基准货币的货币汇率：返回的这个 <code>1.0 / currencyRate</code> 的值是”一个单位的基准货币是多少价值的另外的对照货币”的汇率。</p>
 <p><code>CPTPieChart</code> 将查看计算每个分块的百分比值，这个值最终决定了这个分块占多大。</p>
 <p>下面，用下面这行替代掉 <code>dataLabelForPlot(_:recordIndex:)</code> ：</p>
-<pre><code>func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -&gt; CPTLayer? {
-  let value = rate.rates[symbols[Int(idx)].name]!.floatValue
-  let layer = CPTTextLayer(text: String(format: &quot;\(symbols[Int(idx)].name)\n%.2f&quot;, value))
-  layer.textStyle = plot.labelTextStyle
-  return layer
-}
-</code></pre><p>这个方法返回了饼图分片的标签。期望的返回类型 <code>CPTLayer</code> 和 <code>CALayer</code> 有点相似，但是 CPTLayer 更加抽象，在 Mac OS X 和 iOS 上都能用，还提供了额外的绘图细节供 Core Plot 使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -&gt; CPTLayer? &#123;</div><div class="line">  let value = rate.rates[symbols[Int(idx)].name]!.floatValue</div><div class="line">  let layer = CPTTextLayer(text: String(format: &quot;\(symbols[Int(idx)].name)\n%.2f&quot;, value))</div><div class="line">  layer.textStyle = plot.labelTextStyle</div><div class="line">  return layer</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法返回了饼图分片的标签。期望的返回类型 <code>CPTLayer</code> 和 <code>CALayer</code> 有点相似，但是 CPTLayer 更加抽象，在 Mac OS X 和 iOS 上都能用，还提供了额外的绘图细节供 Core Plot 使用。</p>
 <p>这里，创建并返回一个 <code>CPTLayer</code> 的子类 <code>CPTTextLayer</code> 去展示文本。</p>
 <p>最后，将下面这段代码替换掉 <code>sliceFillForPieChart(_:, recordIndex:)</code> 去添加分片的颜色：</p>
-<pre><code>func sliceFillForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; CPTFill? {
-  switch idx {
-  case 0:   return CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))
-  case 1:   return CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))
-  case 2:   return CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))
-  default:  return nil
-  }
-}
-</code></pre><p>构建并运行，你就将看到一个漂亮的饼图了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">func sliceFillForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; CPTFill? &#123;</div><div class="line">  switch idx &#123;</div><div class="line">  case 0:   return CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))</div><div class="line">  case 1:   return CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))</div><div class="line">  case 2:   return CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))</div><div class="line">  default:  return nil</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构建并运行，你就将看到一个漂亮的饼图了：</p>
 <p><img src="http://ac-Myg6wSTV.clouddn.com/17097b407bd6dbdcc299.png" alt="Core Plot Tutorial"></p>
 <h3 id="等一下…图例呢！"><a href="#等一下…图例呢！" class="headerlink" title="等一下…图例呢！"></a>等一下…图例呢！</h3><p>这个图表看上去相当不错，但是添加一个图例应该会让它更棒。接下来你将学习怎么添加一个图例到这个图表里。</p>
 <p>首先，用下面这段替换掉 <code>configureLegend()</code>：</p>
-<pre><code>func configureLegend() {
-  // 1 - Get graph instance
-  guard let graph = hostView.hostedGraph else { return }
-
-  // 2 - Create legend
-  let theLegend = CPTLegend(graph: graph)
-
-  // 3 - Configure legend
-  theLegend.numberOfColumns = 1
-  theLegend.fill = CPTFill(color: CPTColor.whiteColor())
-  let textStyle = CPTMutableTextStyle()
-  textStyle.fontSize = 18
-  theLegend.textStyle = textStyle
-
-  // 4 - Add legend to graph
-  graph.legend = theLegend
-  if view.bounds.width &gt; view.bounds.height {
-    graph.legendAnchor = .Right
-    graph.legendDisplacement = CGPoint(x: -20, y: 0.0)
-
-  } else {
-    graph.legendAnchor = .BottomRight
-    graph.legendDisplacement = CGPoint(x: -8.0, y: 8.0)
-  }
-}
-</code></pre><p>同样你也需要为每个分片提供图例的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">func configureLegend() &#123;</div><div class="line">  // 1 - Get graph instance</div><div class="line">  guard let graph = hostView.hostedGraph else &#123; return &#125;</div><div class="line"></div><div class="line">  // 2 - Create legend</div><div class="line">  let theLegend = CPTLegend(graph: graph)</div><div class="line"></div><div class="line">  // 3 - Configure legend</div><div class="line">  theLegend.numberOfColumns = 1</div><div class="line">  theLegend.fill = CPTFill(color: CPTColor.whiteColor())</div><div class="line">  let textStyle = CPTMutableTextStyle()</div><div class="line">  textStyle.fontSize = 18</div><div class="line">  theLegend.textStyle = textStyle</div><div class="line"></div><div class="line">  // 4 - Add legend to graph</div><div class="line">  graph.legend = theLegend</div><div class="line">  if view.bounds.width &gt; view.bounds.height &#123;</div><div class="line">    graph.legendAnchor = .Right</div><div class="line">    graph.legendDisplacement = CGPoint(x: -20, y: 0.0)</div><div class="line"></div><div class="line">  &#125; else &#123;</div><div class="line">    graph.legendAnchor = .BottomRight</div><div class="line">    graph.legendDisplacement = CGPoint(x: -8.0, y: 8.0)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样你也需要为每个分片提供图例的数据。</p>
 <p>要提供数据，就用下面这段替换掉 <code>legendTitleForPieChart(_:recordIndex:)</code>：</p>
-<pre><code>func legendTitleForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; String? {
-  return symbols[Int(idx)].name
-}
-</code></pre><p>构建并运行，你就会得到一个“带图例的”图表啦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func legendTitleForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; String? &#123;</div><div class="line">  return symbols[Int(idx)].name</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构建并运行，你就会得到一个“带图例的”图表啦。</p>
 <p><img src="http://ac-Myg6wSTV.clouddn.com/98244c1f592db447f90a.png" alt="Core Plot Tutorial"></p>
 <h2 id="创建柱状图"><a href="#创建柱状图" class="headerlink" title="创建柱状图"></a>创建柱状图</h2><p>看样子你已经是绘制饼图的专家啦，但是时候去搞一个柱状图了！</p>
-<p>打开 <code>BarGraphViewController</code> 并添加下面这行：</p>
-<pre><code>import CorePlot
-</code></pre><p>接着，再添加下面这行：</p>
-<pre><code>@IBOutlet var hostView: CPTGraphHostingView!
-</code></pre><p>其实就和饼图一样，托管视图将承载这个柱状图的展示。</p>
+<p>打开 <code>BarGraphViewController</code> 并添加下面这行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import CorePlot</div></pre></td></tr></table></figure></p>
+<p>接着，再添加下面这行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@IBOutlet var hostView: CPTGraphHostingView!</div></pre></td></tr></table></figure>
+<p>其实就和饼图一样，托管视图将承载这个柱状图的展示。</p>
 <p>下一步，添加下面这些属性：</p>
-<pre><code>var plot1: CPTBarPlot!
-var plot2: CPTBarPlot!
-var plot3: CPTBarPlot!
-</code></pre><p>这里声明了三个 <code>CPTBarPlot</code> 类型的属性，它们就相当于展示在图表中的每种货币。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var plot1: CPTBarPlot!</div><div class="line">var plot2: CPTBarPlot!</div><div class="line">var plot3: CPTBarPlot!</div></pre></td></tr></table></figure>
+<p>这里声明了三个 <code>CPTBarPlot</code> 类型的属性，它们就相当于展示在图表中的每种货币。</p>
 <p>注意到同样也有三个 <code>IBOutlet</code> 标签和三个 <code>IBAction</code> 方法已经被定义了，你都可以在 storyboard 上看到它们。</p>
 <p>最后，把下面这个类扩展添加到文件末尾：</p>
-<pre><code>extension BarGraphViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
-
-  func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt {
-    return 0
-  }
-
-  func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? {
-    return 0
-  }
-
-  func barPlot(plot: CPTBarPlot, barWasSelectedAtRecordIndex idx: UInt, withEvent event: UIEvent) {
-
-  }
-}
-</code></pre><p>这和创建饼图的过程太像了：通过 <code>CPTBarPlotDataSource</code> 为柱状图提供数据，通过 <code>CPTBarPlotDelegate</code> 捕捉用户交互事件。你只需要复制粘贴就好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">extension BarGraphViewController: CPTBarPlotDataSource, CPTBarPlotDelegate &#123;</div><div class="line"></div><div class="line">  func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func barPlot(plot: CPTBarPlot, barWasSelectedAtRecordIndex idx: UInt, withEvent event: UIEvent) &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这和创建饼图的过程太像了：通过 <code>CPTBarPlotDataSource</code> 为柱状图提供数据，通过 <code>CPTBarPlotDelegate</code> 捕捉用户交互事件。你只需要复制粘贴就好了。</p>
 <h3 id="再次配置图表托管视图"><a href="#再次配置图表托管视图" class="headerlink" title="再次配置图表托管视图"></a>再次配置图表托管视图</h3><p>就像刚刚创建饼图时候一样，再次需要通过界面生成器把托管视图添加进去。</p>
 <p>回到 <em>Main.storyboard</em> 并选择 <code>BarGraphViewController</code> 窗口。</p>
 <p>在视图上拖拽出一个新的 <code>UIView</code>，将它的类更改为 <code>CPTGraphHostingView</code> 并将其输出连接到控制器里的 <code>hostView</code>。</p>
@@ -615,80 +469,18 @@ var plot3: CPTBarPlot!
 <p>最后，设置一个你喜欢的背景颜色。我再次用了92%透明度的灰度颜色。</p>
 <h3 id="绘制柱状图"><a href="#绘制柱状图" class="headerlink" title="绘制柱状图"></a>绘制柱状图</h3><p>既然 UI 已经通过上面的学习全部弄好了，是时候去绘制一个柱状图了。</p>
 <p>首先，回到 <code>BarGraphViewController</code>，你需要一对常量属性。把下面这段添加到其他属性之前：</p>
-<pre><code>let BarWidth = 0.25
-let BarInitialX = 0.25
-</code></pre><p>你还需要一个帮助函数去计算最高的率值。把下面这段添加到 <code>updateLabels()</code>之后：</p>
-<pre><code>func highestRateValue() -&gt; Double {
-  var maxRate = DBL_MIN
-  for rate in rates {
-    maxRate = max(maxRate, rate.maxRate().doubleValue)
-  }
-  return maxRate
-}
-</code></pre><p>接着，把下面的方法添加到 <code>highestRateValue()</code> 之后：</p>
-<pre><code>override func viewDidLayoutSubviews() {
-  super.viewDidLayoutSubviews()
-  initPlot()
-}
-
-func initPlot() {
-  configureHostView()
-  configureGraph()
-  configureChart()
-  configureAxes()
-}
-
-func configureHostView() {
-}
-
-func configureGraph() {
-}
-
-func configureChart() {
-}
-
-func configureAxes() {
-}
-</code></pre><p>是不是看上去很眼熟？是的，这些和之前的结构完全一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let BarWidth = 0.25</div><div class="line">let BarInitialX = 0.25</div></pre></td></tr></table></figure>
+<p>你还需要一个帮助函数去计算最高的率值。把下面这段添加到 <code>updateLabels()</code>之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">func highestRateValue() -&gt; Double &#123;</div><div class="line">  var maxRate = DBL_MIN</div><div class="line">  for rate in rates &#123;</div><div class="line">    maxRate = max(maxRate, rate.maxRate().doubleValue)</div><div class="line">  &#125;</div><div class="line">  return maxRate</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着，把下面的方法添加到 <code>highestRateValue()</code> 之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">override func viewDidLayoutSubviews() &#123;</div><div class="line">  super.viewDidLayoutSubviews()</div><div class="line">  initPlot()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func initPlot() &#123;</div><div class="line">  configureHostView()</div><div class="line">  configureGraph()</div><div class="line">  configureChart()</div><div class="line">  configureAxes()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureHostView() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureGraph() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureChart() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureAxes() &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>是不是看上去很眼熟？是的，这些和之前的结构完全一样。</p>
 <p>下面这行添加到 <code>configureHostView()</code> 里：</p>
-<pre><code>hostView.allowPinchScaling = false
-</code></pre><p>因为你不需要捏合缩放，所以你应该再次把它禁用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hostView.allowPinchScaling = false</div></pre></td></tr></table></figure>
+<p>因为你不需要捏合缩放，所以你应该再次把它禁用。</p>
 <p>接着，把下面那么多行代码添加到 <code>configureGraph()</code> 里：</p>
-<pre><code>// 1 - Create the graph
-let graph = CPTXYGraph(frame: hostView.bounds)
-graph.plotAreaFrame?.masksToBorder = false
-hostView.hostedGraph = graph
-
-// 2 - Configure the graph
-graph.applyTheme(CPTTheme(named: kCPTPlainWhiteTheme))
-graph.fill = CPTFill(color: CPTColor.clearColor())
-graph.paddingBottom = 30.0
-graph.paddingLeft = 30.0
-graph.paddingTop = 0.0
-graph.paddingRight = 0.0
-
-// 3 - Set up styles
-let titleStyle = CPTMutableTextStyle()
-titleStyle.color = CPTColor.blackColor()
-titleStyle.fontName = &quot;HelveticaNeue-Bold&quot;
-titleStyle.fontSize = 16.0
-titleStyle.textAlignment = .Center
-graph.titleTextStyle = titleStyle
-
-let title = &quot;\(base.name) exchange rates\n\(rates.first!.date) - \(rates.last!.date)&quot;
-graph.title = title
-graph.titlePlotAreaFrameAnchor = .Top
-graph.titleDisplacement = CGPointMake(0.0, -16.0)
-
-// 4 - Set up plot space
-let xMin = 0.0
-let xMax = Double(rates.count)
-let yMin = 0.0
-let yMax = 1.4 * highestRateValue()
-guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else { return }
-plotSpace.xRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(xMin), lengthDecimal: CPTDecimalFromDouble(xMax - xMin))
-plotSpace.yRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(yMin), lengthDecimal: CPTDecimalFromDouble(yMax - yMin))
-</code></pre><p>下面是这段代码逻辑的拆解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">// 1 - Create the graph</div><div class="line">let graph = CPTXYGraph(frame: hostView.bounds)</div><div class="line">graph.plotAreaFrame?.masksToBorder = false</div><div class="line">hostView.hostedGraph = graph</div><div class="line"></div><div class="line">// 2 - Configure the graph</div><div class="line">graph.applyTheme(CPTTheme(named: kCPTPlainWhiteTheme))</div><div class="line">graph.fill = CPTFill(color: CPTColor.clearColor())</div><div class="line">graph.paddingBottom = 30.0</div><div class="line">graph.paddingLeft = 30.0</div><div class="line">graph.paddingTop = 0.0</div><div class="line">graph.paddingRight = 0.0</div><div class="line"></div><div class="line">// 3 - Set up styles</div><div class="line">let titleStyle = CPTMutableTextStyle()</div><div class="line">titleStyle.color = CPTColor.blackColor()</div><div class="line">titleStyle.fontName = &quot;HelveticaNeue-Bold&quot;</div><div class="line">titleStyle.fontSize = 16.0</div><div class="line">titleStyle.textAlignment = .Center</div><div class="line">graph.titleTextStyle = titleStyle</div><div class="line"></div><div class="line">let title = &quot;\(base.name) exchange rates\n\(rates.first!.date) - \(rates.last!.date)&quot;</div><div class="line">graph.title = title</div><div class="line">graph.titlePlotAreaFrameAnchor = .Top</div><div class="line">graph.titleDisplacement = CGPointMake(0.0, -16.0)</div><div class="line"></div><div class="line">// 4 - Set up plot space</div><div class="line">let xMin = 0.0</div><div class="line">let xMax = Double(rates.count)</div><div class="line">let yMin = 0.0</div><div class="line">let yMax = 1.4 * highestRateValue()</div><div class="line">guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else &#123; return &#125;</div><div class="line">plotSpace.xRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(xMin), lengthDecimal: CPTDecimalFromDouble(xMax - xMin))</div><div class="line">plotSpace.yRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(yMin), lengthDecimal: CPTDecimalFromDouble(yMax - yMin))</div></pre></td></tr></table></figure>
+<p>下面是这段代码逻辑的拆解：</p>
 <ol>
 <li>首先，实例化一个 <code>CPTXYGraph</code>，实际上就是一个柱状图，并将它关联到 <code>hostView</code>。</li>
 <li>然后声明一个 <em>简约的白色</em> 默认主题并为了展示 XY 轴去设置左侧和下方的内边距。</li>
@@ -696,33 +488,8 @@ plotSpace.yRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(yMin), len
 <li>最后，配置 <code>CPTXYPlotSpace</code>，它负责将设备的坐标系映射到图表的坐标系。针对这个图表，你正在绘制三个使用了相同坐标系的汇率。然而，也有可能每个条形图的坐标系都是 <em>分离</em> 的。你还要在坐标系中假定一个最大最小值汇率范围。在后面的教程中，你将学习到怎么样在不提前设定范围的情况下自动调节空间大小。</li>
 </ol>
 <p>既然已经创建好图表了，那是时候增加一些绘制方法进去了！把下面的代码添加到 <code>configureChart()</code>里：</p>
-<pre><code>// 1 - Set up the three plots
-plot1 = CPTBarPlot()
-plot1.fill = CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))
-plot2 = CPTBarPlot()
-plot2.fill = CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))
-plot3 = CPTBarPlot()
-plot3.fill = CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))
-
-// 2 - Set up line style
-let barLineStyle = CPTMutableLineStyle()
-barLineStyle.lineColor = CPTColor.lightGrayColor()
-barLineStyle.lineWidth = 0.5
-
-// 3 - Add plots to graph
-guard let graph = hostView.hostedGraph else { return }
-var barX = BarInitialX
-let plots = [plot1, plot2, plot3]
-for plot: CPTBarPlot in plots {
-  plot.dataSource = self
-  plot.delegate = self
-  plot.barWidth = BarWidth
-  plot.barOffset = barX
-  plot.lineStyle = barLineStyle
-  graph.addPlot(plot, toPlotSpace: graph.defaultPlotSpace)
-  barX += BarWidth
-}
-</code></pre><p>接着来看看上面的代码干了什么：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">// 1 - Set up the three plots</div><div class="line">plot1 = CPTBarPlot()</div><div class="line">plot1.fill = CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))</div><div class="line">plot2 = CPTBarPlot()</div><div class="line">plot2.fill = CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))</div><div class="line">plot3 = CPTBarPlot()</div><div class="line">plot3.fill = CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))</div><div class="line"></div><div class="line">// 2 - Set up line style</div><div class="line">let barLineStyle = CPTMutableLineStyle()</div><div class="line">barLineStyle.lineColor = CPTColor.lightGrayColor()</div><div class="line">barLineStyle.lineWidth = 0.5</div><div class="line"></div><div class="line">// 3 - Add plots to graph</div><div class="line">guard let graph = hostView.hostedGraph else &#123; return &#125;</div><div class="line">var barX = BarInitialX</div><div class="line">let plots = [plot1, plot2, plot3]</div><div class="line">for plot: CPTBarPlot in plots &#123;</div><div class="line">  plot.dataSource = self</div><div class="line">  plot.delegate = self</div><div class="line">  plot.barWidth = BarWidth</div><div class="line">  plot.barOffset = barX</div><div class="line">  plot.lineStyle = barLineStyle</div><div class="line">  graph.addPlot(plot, toPlotSpace: graph.defaultPlotSpace)</div><div class="line">  barX += BarWidth</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着来看看上面的代码干了什么：</p>
 <ol>
 <li>实例化每个条形图并设置它们的填充色。</li>
 <li>实例化一个代表每个条形图的外部边框的 <code>CPTMutableLineStyle</code> 实例。</li>
@@ -731,119 +498,25 @@ for plot: CPTBarPlot in plots {
 <p>虽然还不可以看到柱状图展示出来，但通过构建 app 可以去验证目前为止是否所有代码都可以正确编译通过。</p>
 <p>为了确切看到柱状图展示数据出来，需要去实现提供图表所需数据的代理方法。</p>
 <p>用下面这行替换掉 <code>numberOfRecordsForPlot(:_)</code>：</p>
-<pre><code>return UInt(rates.count ?? 0)
-</code></pre><p>该方法返回了应该展示的记录的总数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return UInt(rates.count ?? 0)</div></pre></td></tr></table></figure>
+<p>该方法返回了应该展示的记录的总数。</p>
 <p>下面这段替换掉 <code>numberForPlot(_:field:recordIndex:)</code>：</p>
-<pre><code>if fieldEnum == UInt(CPTBarPlotField.BarTip.rawValue) {
-  if plot == plot1 {
-    return 1.0
-  }
-  if plot == plot2 {
-    return rates[Int(idx)].rates[symbols[0].name]!.floatValue
-  }
-  if plot == plot3 {
-    return rates[Int(idx)].rates[symbols[1].name]!.floatValue
-  }
-}
-return idx
-</code></pre><p><code>CPTBarPlotField.BarTip</code> 的值表明了柱状图的相对大小。在你需要取回数据的时候可以使用保留属性计算出汇率，<code>recordIndex</code> 对应了利息率的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">if fieldEnum == UInt(CPTBarPlotField.BarTip.rawValue) &#123;</div><div class="line">  if plot == plot1 &#123;</div><div class="line">    return 1.0</div><div class="line">  &#125;</div><div class="line">  if plot == plot2 &#123;</div><div class="line">    return rates[Int(idx)].rates[symbols[0].name]!.floatValue</div><div class="line">  &#125;</div><div class="line">  if plot == plot3 &#123;</div><div class="line">    return rates[Int(idx)].rates[symbols[1].name]!.floatValue</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">return idx</div></pre></td></tr></table></figure>
+<p><code>CPTBarPlotField.BarTip</code> 的值表明了柱状图的相对大小。在你需要取回数据的时候可以使用保留属性计算出汇率，<code>recordIndex</code> 对应了利息率的位置。</p>
 <p>构建并运行，你应该可以看到和下面这张图一样的情况：</p>
 <p><img src="http://ac-Myg6wSTV.clouddn.com/4b5878afc9ec6c9b4427.png" alt="Core Plot Tutorial"></p>
 <p>已经快完成了！但请注意还没有任何东西指明每个坐标轴是代表什么意思。</p>
 <p>要解决这个问题，把下面这段添加进 <code>configureAxes()</code>：</p>
-<pre><code>// 1 - Configure styles
-let axisLineStyle = CPTMutableLineStyle()
-axisLineStyle.lineWidth = 2.0
-axisLineStyle.lineColor = CPTColor.blackColor()
-
-// 2 - Get the graph&apos;s axis set
-guard let axisSet = hostView.hostedGraph?.axisSet as? CPTXYAxisSet else { return }
-
-// 3 - Configure the x-axis
-if let xAxis = axisSet.xAxis {
-  xAxis.labelingPolicy = .None
-  xAxis.majorIntervalLength = 1
-  xAxis.axisLineStyle = axisLineStyle
-  var majorTickLocations = Set&lt;nsnumber&gt;()
-  var axisLabels = Set&lt;cptaxislabel&gt;()
-  for (idx, rate) in rates.enumerate() {
-    majorTickLocations.insert(idx)
-    let label = CPTAxisLabel(text: &quot;\(rate.date)&quot;, textStyle: CPTTextStyle())
-    label.tickLocation = idx
-    label.offset = 5.0
-    label.alignment = .Left
-    axisLabels.insert(label)
-  }
-  xAxis.majorTickLocations = majorTickLocations
-  xAxis.axisLabels = axisLabels
-}
-
-// 4 - Configure the y-axis
-if let yAxis = axisSet.yAxis {
-  yAxis.labelingPolicy = .FixedInterval
-  yAxis.labelOffset = -10.0
-  yAxis.minorTicksPerInterval = 3
-  yAxis.majorTickLength = 30
-  let majorTickLineStyle = CPTMutableLineStyle()
-  majorTickLineStyle.lineColor = CPTColor.blackColor().colorWithAlphaComponent(0.1)
-  yAxis.majorTickLineStyle = majorTickLineStyle
-  yAxis.minorTickLength = 20
-  let minorTickLineStyle = CPTMutableLineStyle()
-  minorTickLineStyle.lineColor = CPTColor.blackColor().colorWithAlphaComponent(0.05)
-  yAxis.minorTickLineStyle = minorTickLineStyle
-  yAxis.axisLineStyle = axisLineStyle
-}&lt;/cptaxislabel&gt;&lt;/nsnumber&gt;
-</code></pre><p>简单地说，上面的代码首先为轴线和标题定义了样式，然后，为图表添加坐标轴的设置并配置好 x 轴和 y 轴的一些属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">// 1 - Configure styles</div><div class="line">let axisLineStyle = CPTMutableLineStyle()</div><div class="line">axisLineStyle.lineWidth = 2.0</div><div class="line">axisLineStyle.lineColor = CPTColor.blackColor()</div><div class="line"></div><div class="line">// 2 - Get the graph&apos;s axis set</div><div class="line">guard let axisSet = hostView.hostedGraph?.axisSet as? CPTXYAxisSet else &#123; return &#125;</div><div class="line"></div><div class="line">// 3 - Configure the x-axis</div><div class="line">if let xAxis = axisSet.xAxis &#123;</div><div class="line">  xAxis.labelingPolicy = .None</div><div class="line">  xAxis.majorIntervalLength = 1</div><div class="line">  xAxis.axisLineStyle = axisLineStyle</div><div class="line">  var majorTickLocations = Set&lt;nsnumber&gt;()</div><div class="line">  var axisLabels = Set&lt;cptaxislabel&gt;()</div><div class="line">  for (idx, rate) in rates.enumerate() &#123;</div><div class="line">    majorTickLocations.insert(idx)</div><div class="line">    let label = CPTAxisLabel(text: &quot;\(rate.date)&quot;, textStyle: CPTTextStyle())</div><div class="line">    label.tickLocation = idx</div><div class="line">    label.offset = 5.0</div><div class="line">    label.alignment = .Left</div><div class="line">    axisLabels.insert(label)</div><div class="line">  &#125;</div><div class="line">  xAxis.majorTickLocations = majorTickLocations</div><div class="line">  xAxis.axisLabels = axisLabels</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 4 - Configure the y-axis</div><div class="line">if let yAxis = axisSet.yAxis &#123;</div><div class="line">  yAxis.labelingPolicy = .FixedInterval</div><div class="line">  yAxis.labelOffset = -10.0</div><div class="line">  yAxis.minorTicksPerInterval = 3</div><div class="line">  yAxis.majorTickLength = 30</div><div class="line">  let majorTickLineStyle = CPTMutableLineStyle()</div><div class="line">  majorTickLineStyle.lineColor = CPTColor.blackColor().colorWithAlphaComponent(0.1)</div><div class="line">  yAxis.majorTickLineStyle = majorTickLineStyle</div><div class="line">  yAxis.minorTickLength = 20</div><div class="line">  let minorTickLineStyle = CPTMutableLineStyle()</div><div class="line">  minorTickLineStyle.lineColor = CPTColor.blackColor().colorWithAlphaComponent(0.05)</div><div class="line">  yAxis.minorTickLineStyle = minorTickLineStyle</div><div class="line">  yAxis.axisLineStyle = axisLineStyle</div><div class="line">&#125;&lt;/cptaxislabel&gt;&lt;/nsnumber&gt;</div></pre></td></tr></table></figure>
+<p>简单地说，上面的代码首先为轴线和标题定义了样式，然后，为图表添加坐标轴的设置并配置好 x 轴和 y 轴的一些属性。</p>
 <p>构建并运行就可以看到这些改动的结果了。</p>
 <p><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2016/04/swiftrates-09.png" alt="Core Plot Tutorial"></p>
 <h3 id="功能化坐标轴"><a href="#功能化坐标轴" class="headerlink" title="功能化坐标轴"></a>功能化坐标轴</h3><p>更棒了对吧？唯一的缺陷在于这个坐标轴太简单了，没办法从这儿得到一个准确的汇率展示。</p>
 <p>你可以修复这个问题以便当用户点按在一个单独的柱状图时，这个 app 可以展示这个图表示的汇率。为了实现它，需要增加一个新的属性：</p>
-<pre><code>var priceAnnotation: CPTPlotSpaceAnnotation?
-</code></pre><p>然后把下面的代码添加到 <code>barPlot(_:barWasSelectedAtRecordIndex:)</code>：</p>
-<pre><code>// 1 - Is the plot hidden?
-if plot.hidden == true {
-  return
-}
-// 2 - Create style, if necessary
-let style = CPTMutableTextStyle()
-style.fontSize = 12.0
-style.fontName = &quot;HelveticaNeue-Bold&quot;
-
-// 3 - Create annotation
-guard let price = numberForPlot(plot,
-                                field: UInt(CPTBarPlotField.BarTip.rawValue),
-                                recordIndex: idx) as? CGFloat else { return }
-
-priceAnnotation?.annotationHostLayer?.removeAnnotation(priceAnnotation)
-priceAnnotation = CPTPlotSpaceAnnotation(plotSpace: plot.plotSpace!, anchorPlotPoint: [0,0])
-
-// 4 - Create number formatter
-let formatter = NSNumberFormatter()
-formatter.maximumFractionDigits = 2
-// 5 - Create text layer for annotation
-let priceValue = formatter.stringFromNumber(price)!
-let textLayer = CPTTextLayer(text: priceValue, style: style)
-
-priceAnnotation!.contentLayer = textLayer
-// 6 - Get plot index
-var plotIndex: Int = 0
-if plot == plot1 {
-  plotIndex = 0
-}
-else if plot == plot2 {
-  plotIndex = 1
-}
-else if plot == plot3 {
-  plotIndex = 2
-}
-// 7 - Get the anchor point for annotation
-let x = CGFloat(idx) + CGFloat(BarInitialX) + (CGFloat(plotIndex) * CGFloat(BarWidth))
-let y = CGFloat(price) + 0.05
-priceAnnotation!.anchorPlotPoint = [x, y]
-// 8 - Add the annotation
-guard let plotArea = plot.graph?.plotAreaFrame?.plotArea else { return }
-plotArea.addAnnotation(priceAnnotation)
-</code></pre><p>这里需要一些解释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var priceAnnotation: CPTPlotSpaceAnnotation?</div></pre></td></tr></table></figure>
+<p>然后把下面的代码添加到 <code>barPlot(_:barWasSelectedAtRecordIndex:)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">// 1 - Is the plot hidden?</div><div class="line">if plot.hidden == true &#123;</div><div class="line">  return</div><div class="line">&#125;</div><div class="line">// 2 - Create style, if necessary</div><div class="line">let style = CPTMutableTextStyle()</div><div class="line">style.fontSize = 12.0</div><div class="line">style.fontName = &quot;HelveticaNeue-Bold&quot;</div><div class="line"></div><div class="line">// 3 - Create annotation</div><div class="line">guard let price = numberForPlot(plot,</div><div class="line">                                field: UInt(CPTBarPlotField.BarTip.rawValue),</div><div class="line">                                recordIndex: idx) as? CGFloat else &#123; return &#125;</div><div class="line"></div><div class="line">priceAnnotation?.annotationHostLayer?.removeAnnotation(priceAnnotation)</div><div class="line">priceAnnotation = CPTPlotSpaceAnnotation(plotSpace: plot.plotSpace!, anchorPlotPoint: [0,0])</div><div class="line"></div><div class="line">// 4 - Create number formatter</div><div class="line">let formatter = NSNumberFormatter()</div><div class="line">formatter.maximumFractionDigits = 2</div><div class="line">// 5 - Create text layer for annotation</div><div class="line">let priceValue = formatter.stringFromNumber(price)!</div><div class="line">let textLayer = CPTTextLayer(text: priceValue, style: style)</div><div class="line"></div><div class="line">priceAnnotation!.contentLayer = textLayer</div><div class="line">// 6 - Get plot index</div><div class="line">var plotIndex: Int = 0</div><div class="line">if plot == plot1 &#123;</div><div class="line">  plotIndex = 0</div><div class="line">&#125;</div><div class="line">else if plot == plot2 &#123;</div><div class="line">  plotIndex = 1</div><div class="line">&#125;</div><div class="line">else if plot == plot3 &#123;</div><div class="line">  plotIndex = 2</div><div class="line">&#125;</div><div class="line">// 7 - Get the anchor point for annotation</div><div class="line">let x = CGFloat(idx) + CGFloat(BarInitialX) + (CGFloat(plotIndex) * CGFloat(BarWidth))</div><div class="line">let y = CGFloat(price) + 0.05</div><div class="line">priceAnnotation!.anchorPlotPoint = [x, y]</div><div class="line">// 8 - Add the annotation</div><div class="line">guard let plotArea = plot.graph?.plotAreaFrame?.plotArea else &#123; return &#125;</div><div class="line">plotArea.addAnnotation(priceAnnotation)</div></pre></td></tr></table></figure>
+<p>这里需要一些解释：</p>
 <ol>
 <li>不要给一个隐藏的柱状图展示注解，而当图没有设置隐藏属性的时候，在把切换开关整合到图表之后，你就将实现它了。</li>
 <li>这里还要为你的注解创建一个文本样式。</li>
@@ -859,42 +532,12 @@ plotArea.addAnnotation(priceAnnotation)
 <p><img src="https://cdn3.raywenderlich.com/wp-content/uploads/2016/04/swiftrates-10.png" alt="Core Plot Tutorial"></p>
 <h3 id="隐藏和查找"><a href="#隐藏和查找" class="headerlink" title="隐藏和查找"></a>隐藏和查找</h3><p>这个柱状图看起来很棒，但屏幕最上方的切换开关并没有起什么作用，是时候改动它们了。</p>
 <p>首先，需要添加一个帮助方法，把下面这段添加到 <code>switch3Changed(_:)</code> 之后：</p>
-<pre><code>func hideAnnotation(graph: CPTGraph) {
-  guard let plotArea = graph.plotAreaFrame?.plotArea,
-    priceAnnotation = priceAnnotation else {
-      return
-  }
-
-  plotArea.removeAnnotation(priceAnnotation)
-  self.priceAnnotation = nil
-}
-</code></pre><p>这段代码首先简单地移除了一个如果存在的注解。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func hideAnnotation(graph: CPTGraph) &#123;</div><div class="line">  guard let plotArea = graph.plotAreaFrame?.plotArea,</div><div class="line">    priceAnnotation = priceAnnotation else &#123;</div><div class="line">      return</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  plotArea.removeAnnotation(priceAnnotation)</div><div class="line">  self.priceAnnotation = nil</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码首先简单地移除了一个如果存在的注解。</p>
 <p>下一步，你希望用户通过切换开关展示一个给定的货币汇率柱状图。</p>
 <p>要做到这个功能，用下面这段替换到 <code>switch1Changed(_:)</code>，<code>switch2Changed(_:)</code> 和 <code>switch3Changed(_:)</code> 的实现。</p>
-<pre><code>@IBAction func switch1Changed(sender: UISwitch) {
-  let on = sender.on
-  if !on {
-    hideAnnotation(plot1.graph!)
-  }
-  plot1.hidden = !on
-}
-
-@IBAction func switch2Changed(sender: UISwitch) {
-  let on = sender.on
-  if !on {
-    hideAnnotation(plot2.graph!)
-  }
-  plot2.hidden = !on
-}
-
-@IBAction func switch3Changed(sender: UISwitch) {
-  let on = sender.on
-  if !on {
-    hideAnnotation(plot3.graph!)
-  }
-  plot3.hidden = !on
-}
-</code></pre><p>这个逻辑相当简单。如果开关设置了关闭，相关的图和其可见的注解就将被隐藏，而如果设置为开启，则图就会被设置为可见。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">@IBAction func switch1Changed(sender: UISwitch) &#123;</div><div class="line">  let on = sender.on</div><div class="line">  if !on &#123;</div><div class="line">    hideAnnotation(plot1.graph!)</div><div class="line">  &#125;</div><div class="line">  plot1.hidden = !on</div><div class="line">&#125;</div><div class="line"></div><div class="line">@IBAction func switch2Changed(sender: UISwitch) &#123;</div><div class="line">  let on = sender.on</div><div class="line">  if !on &#123;</div><div class="line">    hideAnnotation(plot2.graph!)</div><div class="line">  &#125;</div><div class="line">  plot2.hidden = !on</div><div class="line">&#125;</div><div class="line"></div><div class="line">@IBAction func switch3Changed(sender: UISwitch) &#123;</div><div class="line">  let on = sender.on</div><div class="line">  if !on &#123;</div><div class="line">    hideAnnotation(plot3.graph!)</div><div class="line">  &#125;</div><div class="line">  plot3.hidden = !on</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个逻辑相当简单。如果开关设置了关闭，相关的图和其可见的注解就将被隐藏，而如果设置为开启，则图就会被设置为可见。</p>
 <p>构建并运行。现在你可以在图表中随意切换每个柱状图的展示了。教程至此已经完成了很不错的工作！</p>
 <p><img src="http://ww4.sinaimg.cn/large/a490147fjw1f5tbq390v7g20fj08sgpr.gif" alt=""></p>
 <h2 id="接下来干点啥？"><a href="#接下来干点啥？" class="headerlink" title="接下来干点啥？"></a>接下来干点啥？</h2><p>你可以从<a href="https://cdn1.raywenderlich.com/wp-content/uploads/2016/05/SwiftRates_Final-1.zip" target="_blank" rel="external">这里</a>下载一个已完成的项目。</p>
@@ -1212,6 +855,7 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
                 
 				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
 
@@ -1355,11 +999,14 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Window Load-->
 <script>
-    // Post_Toc parent position fixed
     $(window).load(function() {
+        // Post_Toc parent position fixed
         $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
 </script>
+
+<!-- MathJax Load-->
+
             </main>
         </div>
 		
