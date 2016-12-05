@@ -4,7 +4,7 @@
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>llp的程序猿之路</title>
-    <link>http://yoursite.com/</link>
+    <link>http://llp0574.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>llp的程序猿之路走得磕磕绊绊</description>
@@ -13,8 +13,8 @@
     
     <item>
       <title>Webpack 2 入门教程</title>
-      <link>http://yoursite.com/2016/11/29/getting-started-with-webpack2/</link>
-      <guid>http://yoursite.com/2016/11/29/getting-started-with-webpack2/</guid>
+      <link>http://llp0574.github.io/2016/11/29/getting-started-with-webpack2/</link>
+      <guid>http://llp0574.github.io/2016/11/29/getting-started-with-webpack2/</guid>
       <pubDate>Tue, 29 Nov 2016 14:57:55 GMT</pubDate>
       <description>
       
@@ -31,7 +31,7 @@
 <li>原文地址：<a href="https://blog.madewithenvy.com/getting-started-with-webpack-2-ed2b86c68783#.7a93d61z6" target="_blank" rel="external">Getting Started with Webpack 2
 </a></li>
 <li>原文作者：<a href="https://blog.madewithenvy.com/@an_ennui?source=post_header_lockup" target="_blank" rel="external">Drew Powers</a></li>
-<li>译者：<a href="https://llp0574.github.io/" target="_blank" rel="external">linpu.li</a></li>
+<li>译者：<a href="https://llp0574.github.io/">linpu.li</a></li>
 </ul>
 </blockquote>
 <p>Webpack 2 将在其文档完成之后正式发布。但这并不意味着不可以开始使用它，如果你知道怎么配置的话。</p>
@@ -148,13 +148,13 @@
 </ul>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/11/29/getting-started-with-webpack2/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/11/29/getting-started-with-webpack2/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Git使用规范</title>
-      <link>http://yoursite.com/2016/11/25/git-use/</link>
-      <guid>http://yoursite.com/2016/11/25/git-use/</guid>
+      <link>http://llp0574.github.io/2016/11/25/git-use/</link>
+      <guid>http://llp0574.github.io/2016/11/25/git-use/</guid>
       <pubDate>Thu, 24 Nov 2016 16:35:10 GMT</pubDate>
       <description>
       
@@ -191,13 +191,13 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>需要熟悉的命令有remote, pull, push, rebase, fetch, checkout, stash</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/11/25/git-use/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/11/25/git-use/#disqus_thread</comments>
     </item>
     
     <item>
       <title>一个健壮且可扩展的 CSS 架构所需的8个简单规则</title>
-      <link>http://yoursite.com/2016/11/17/css-architecture/</link>
-      <guid>http://yoursite.com/2016/11/17/css-architecture/</guid>
+      <link>http://llp0574.github.io/2016/11/17/css-architecture/</link>
+      <guid>http://llp0574.github.io/2016/11/17/css-architecture/</guid>
       <pubDate>Thu, 17 Nov 2016 15:31:08 GMT</pubDate>
       <description>
       
@@ -394,13 +394,13 @@
 <h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a><a href="#license"></a>证书</h2><p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external">CC BY 4.0</a></p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/11/17/css-architecture/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/11/17/css-architecture/#disqus_thread</comments>
     </item>
     
     <item>
       <title>VUE 和 VUEX 中的数据流</title>
-      <link>http://yoursite.com/2016/10/14/data-flow-in-vue-and-vuex/</link>
-      <guid>http://yoursite.com/2016/10/14/data-flow-in-vue-and-vuex/</guid>
+      <link>http://llp0574.github.io/2016/10/14/data-flow-in-vue-and-vuex/</link>
+      <guid>http://llp0574.github.io/2016/10/14/data-flow-in-vue-and-vuex/</guid>
       <pubDate>Fri, 14 Oct 2016 15:21:16 GMT</pubDate>
       <description>
       
@@ -498,13 +498,13 @@
 <p>所以为什么还要再展示这段？因为我和其他人一样很懒。有时我就会做这样的事情，仅仅想知道再继续做下去会有多么糟糕，然后我就会咒骂自己的懒惰，因为我可能要花上一小时或者一天的时间去清理它们。鉴于这种情况，我希望我可以帮助你尽早避免无谓的决定和错误，<strong>千万不要</strong>传递任何你不需要的东西。99%的情况下，一个单独的共享状态已经足够完美。（不久再详细讲讲那1%的情况）</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/10/14/data-flow-in-vue-and-vuex/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/10/14/data-flow-in-vue-and-vuex/#disqus_thread</comments>
     </item>
     
     <item>
       <title>用心设计的艺术</title>
-      <link>http://yoursite.com/2016/09/12/the-art-of-designing-with-heart/</link>
-      <guid>http://yoursite.com/2016/09/12/the-art-of-designing-with-heart/</guid>
+      <link>http://llp0574.github.io/2016/09/12/the-art-of-designing-with-heart/</link>
+      <guid>http://llp0574.github.io/2016/09/12/the-art-of-designing-with-heart/</guid>
       <pubDate>Mon, 12 Sep 2016 14:59:33 GMT</pubDate>
       <description>
       
@@ -590,13 +590,13 @@
 <hr>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/09/12/the-art-of-designing-with-heart/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/09/12/the-art-of-designing-with-heart/#disqus_thread</comments>
     </item>
     
     <item>
       <title>iOS 开发，该如何解决弹窗的设计问题？</title>
-      <link>http://yoursite.com/2016/07/28/popovers-on-popovers/</link>
-      <guid>http://yoursite.com/2016/07/28/popovers-on-popovers/</guid>
+      <link>http://llp0574.github.io/2016/07/28/popovers-on-popovers/</link>
+      <guid>http://llp0574.github.io/2016/07/28/popovers-on-popovers/</guid>
       <pubDate>Thu, 28 Jul 2016 14:44:57 GMT</pubDate>
       <description>
       
@@ -639,13 +639,13 @@
 <p>我们不能重现页面(Pages)的行为。对于我们来说，当一个表单展示一个活动视图控制器时，它将展示为弹窗。我把这个问题报告给了 Apple ：<a href="http://openradar.appspot.com/27448912" target="_blank" rel="external">rdar://27448912 Can’t show activity view controller filling a form sheet</a>。如果你知道解决这个问题的方法，<a href="https://twitter.com/qdoug" target="_blank" rel="external">麻烦在我的 Twitter 留言</a>。</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/07/28/popovers-on-popovers/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/07/28/popovers-on-popovers/#disqus_thread</comments>
     </item>
     
     <item>
       <title>如何使用 TypeScript 编写 AngularJS 的 Controller？</title>
-      <link>http://yoursite.com/2016/07/27/use-typescript-to-write-angular-controller/</link>
-      <guid>http://yoursite.com/2016/07/27/use-typescript-to-write-angular-controller/</guid>
+      <link>http://llp0574.github.io/2016/07/27/use-typescript-to-write-angular-controller/</link>
+      <guid>http://llp0574.github.io/2016/07/27/use-typescript-to-write-angular-controller/</guid>
       <pubDate>Wed, 27 Jul 2016 14:28:13 GMT</pubDate>
       <description>
       
@@ -674,13 +674,13 @@
 <p>如果你想学到更多有关如何整合 AngularJS 和 TypeScript 的知识，可以看看<a href="http://www.siddharthpandey.net/tag/angularjs/" target="_blank" rel="external">我的 AngularJS 文章</a>。如果你想学习其他一些特别的东西可以联系我，我会尝试写相关文章的。</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/07/27/use-typescript-to-write-angular-controller/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/07/27/use-typescript-to-write-angular-controller/#disqus_thread</comments>
     </item>
     
     <item>
       <title>如何使用 TypeScript 编写自定义 AngularJS 指令？</title>
-      <link>http://yoursite.com/2016/07/26/use-typescript-to-write-angular-directive/</link>
-      <guid>http://yoursite.com/2016/07/26/use-typescript-to-write-angular-directive/</guid>
+      <link>http://llp0574.github.io/2016/07/26/use-typescript-to-write-angular-directive/</link>
+      <guid>http://llp0574.github.io/2016/07/26/use-typescript-to-write-angular-directive/</guid>
       <pubDate>Tue, 26 Jul 2016 14:19:21 GMT</pubDate>
       <description>
       
@@ -733,13 +733,13 @@
 <p>如果你想学到更多有关如何整合 AngularJS 和 TypeScript 的知识，可以看看<a href="http://www.siddharthpandey.net/tag/angularjs/" target="_blank" rel="external">我的 AngularJS 文章</a>。如果你想学习其他一些特别的东西可以联系我，我会尝试写相关文章的。</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/07/26/use-typescript-to-write-angular-directive/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/07/26/use-typescript-to-write-angular-directive/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Controller间的数据共享？最佳实践：使用Service</title>
-      <link>http://yoursite.com/2016/07/22/angular-controller-data-share/</link>
-      <guid>http://yoursite.com/2016/07/22/angular-controller-data-share/</guid>
+      <link>http://llp0574.github.io/2016/07/22/angular-controller-data-share/</link>
+      <guid>http://llp0574.github.io/2016/07/22/angular-controller-data-share/</guid>
       <pubDate>Fri, 22 Jul 2016 14:14:08 GMT</pubDate>
       <description>
       
@@ -788,13 +788,13 @@
 <p>感谢阅读！</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/07/22/angular-controller-data-share/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/07/22/angular-controller-data-share/#disqus_thread</comments>
     </item>
     
     <item>
       <title>逐渐去掌握 React（作为一名 Angular 开发者）</title>
-      <link>http://yoursite.com/2016/07/21/angular-to-react/</link>
-      <guid>http://yoursite.com/2016/07/21/angular-to-react/</guid>
+      <link>http://llp0574.github.io/2016/07/21/angular-to-react/</link>
+      <guid>http://llp0574.github.io/2016/07/21/angular-to-react/</guid>
       <pubDate>Thu, 21 Jul 2016 14:02:26 GMT</pubDate>
       <description>
       
@@ -866,13 +866,13 @@
 <p>如果你决定使用它了，那就回来这儿吧，我等你！</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/07/21/angular-to-react/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/07/21/angular-to-react/#disqus_thread</comments>
     </item>
     
     <item>
       <title>iOS 开源图形库 Core Plot 使用教程</title>
-      <link>http://yoursite.com/2016/07/20/core-plot/</link>
-      <guid>http://yoursite.com/2016/07/20/core-plot/</guid>
+      <link>http://llp0574.github.io/2016/07/20/core-plot/</link>
+      <guid>http://llp0574.github.io/2016/07/20/core-plot/</guid>
       <pubDate>Wed, 20 Jul 2016 13:46:55 GMT</pubDate>
       <description>
       
@@ -1088,13 +1088,13 @@
 <p>祝你有个快乐的绘图过程！</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/07/20/core-plot/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/07/20/core-plot/#disqus_thread</comments>
     </item>
     
     <item>
       <title>node版本管理工具nvm - Mac下安装及使用</title>
-      <link>http://yoursite.com/2016/02/02/nvm-mac-use/</link>
-      <guid>http://yoursite.com/2016/02/02/nvm-mac-use/</guid>
+      <link>http://llp0574.github.io/2016/02/02/nvm-mac-use/</link>
+      <guid>http://llp0574.github.io/2016/02/02/nvm-mac-use/</guid>
       <pubDate>Tue, 02 Feb 2016 13:39:03 GMT</pubDate>
       <description>
       
@@ -1145,13 +1145,13 @@
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>以上为我在安装nvm的过程中通过各种资料总结出来的一套简单教程，欢迎大家分享交流！</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/02/02/nvm-mac-use/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/02/02/nvm-mac-use/#disqus_thread</comments>
     </item>
     
     <item>
       <title>使用AngularJS构建应用时遇到的问题及解决方案（版本为1.3.9）</title>
-      <link>http://yoursite.com/2016/01/16/angular-js-problem-collections/</link>
-      <guid>http://yoursite.com/2016/01/16/angular-js-problem-collections/</guid>
+      <link>http://llp0574.github.io/2016/01/16/angular-js-problem-collections/</link>
+      <guid>http://llp0574.github.io/2016/01/16/angular-js-problem-collections/</guid>
       <pubDate>Sat, 16 Jan 2016 13:20:52 GMT</pubDate>
       <description>
       
@@ -1197,13 +1197,13 @@
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>以上为我在编写一个angular应用时遇到的问题及解决方案，记录并分享出来，欢迎大家指正！</p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/01/16/angular-js-problem-collections/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/01/16/angular-js-problem-collections/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Hello Hexo</title>
-      <link>http://yoursite.com/2016/01/15/hello-hexo/</link>
-      <guid>http://yoursite.com/2016/01/15/hello-hexo/</guid>
+      <link>http://llp0574.github.io/2016/01/15/hello-hexo/</link>
+      <guid>http://llp0574.github.io/2016/01/15/hello-hexo/</guid>
       <pubDate>Fri, 15 Jan 2016 13:20:52 GMT</pubDate>
       <description>
       
@@ -1222,7 +1222,7 @@
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2016/01/15/hello-hexo/#disqus_thread</comments>
+      <comments>http://llp0574.github.io/2016/01/15/hello-hexo/#disqus_thread</comments>
     </item>
     
   </channel>
